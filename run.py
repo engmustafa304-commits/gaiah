@@ -1,7 +1,23 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "<h1>Gaiah Platform</h1><p>Smart Invitation Platform</p>"
+    return render_template("home.html")
+
+@app.route("/pricing")
+def pricing():
+    return render_template("pricing.html")
+
+@app.route("/login")
+def login():
+    return render_template("login.html")
+
+@app.route("/create")
+def create():
+    return render_template("create.html")
+
+@app.route("/dashboard")
+def dashboard():
+    return render_template("dashboard.html")

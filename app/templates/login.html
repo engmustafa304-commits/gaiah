@@ -1,13 +1,22 @@
-<h2>تسجيل الدخول</h2>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+</head>
 
-{% for message in get_flashed_messages() %}
-<p style="color:red">{{ message }}</p>
-{% endfor %}
+<body>
 
-<form method="POST">
-    <input type="email" name="email" placeholder="البريد" required>
-    <input type="password" name="password" placeholder="كلمة المرور" required>
-    <button type="submit">دخول</button>
+<h1>Login</h1>
+
+<form>
+
+<input placeholder="Email"><br><br>
+
+<input type="password" placeholder="Password"><br><br>
+
+<button>Login</button>
+
 </form>
 
-<a href="{{ url_for('auth.register') }}">إنشاء حساب</a>
+</body>
+</html>
