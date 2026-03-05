@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+<h3 class="mb-4">رفع قائمة المدعوين</h3>
+
+<form method="POST" enctype="multipart/form-data">
+
+<div class="mb-3">
+<input type="file" name="file" class="form-control" required>
+</div>
+
+<button class="btn btn-dark">رفع الملف</button>
+
+</form>
+
+</div>
+
+{% endblock %}

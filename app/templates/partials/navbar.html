@@ -1,0 +1,15 @@
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <span class="navbar-brand">
+            Giyah | جَيّة
+        </span>
+
+        <div class="ms-auto text-light">
+            {{ current_user.name }}
+            |
+            <a href="{{ url_for('auth.logout') }}" class="text-light">
+                تسجيل خروج
+            </a>
+        </div>
+    </div>
+</nav>

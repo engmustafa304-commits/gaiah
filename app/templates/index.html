@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaiah</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo">
+    </div>
+    <ul class="menu">
+        <li>الباقات</li>
+        <li>المميزات</li>
+        <li>لماذا جيه</li>
+        <li>تواصل</li>
+    </ul>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+
+        <div class="hero-text">
+            <h1>منصة دعوات رقمية احترافية</h1>
+            <p>إدارة الدعوات والحضور بطريقة عصرية سهلة وأنيقة</p>
+            <a href="#" class="btn-main">ابدأ الآن</a>
+        </div>
+
+        <div class="hero-phone">
+            <img src="{{ url_for('static', filename='images/phone.png') }}" alt="phone">
+        </div>
+
+    </div>
+</section>
+
+<section class="features">
+    <h2>مميزات المنصة</h2>
+    <div class="features-grid">
+        <div class="card">
+            <h3>إدارة حضور ذكية</h3>
+            <p>متابعة تأكيد الحضور بشكل مباشر</p>
+        </div>
+        <div class="card">
+            <h3>QR Code تلقائي</h3>
+            <p>تأكيد دخول سريع ومنظم</p>
+        </div>
+        <div class="card">
+            <h3>تصاميم فاخرة</h3>
+            <p>قوالب راقية تناسب كل المناسبات</p>
+        </div>
+    </div>
+</section>
+
+<section class="pricing">
+    <h2>الباقات</h2>
+    <div class="pricing-grid">
+        <div class="price-card">
+            <h3>أساسية</h3>
+            <p class="price">99 ريال</p>
+        </div>
+        <div class="price-card highlight">
+            <h3>احترافية</h3>
+            <p class="price">199 ريال</p>
+        </div>
+        <div class="price-card">
+            <h3>مميزة</h3>
+            <p class="price">299 ريال</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Gaiah - جميع الحقوق محفوظة</p>
+</footer>
+
+</body>
+</html>

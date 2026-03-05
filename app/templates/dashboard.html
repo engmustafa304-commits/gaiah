@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+{% block title %}لوحة التحكم{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+<h4 class="fw-bold mb-4">لوحة تحكم المناسبة</h4>
+
+<div class="row g-4 mb-4">
+
+<div class="col-md-3">
+<div class="card p-3 text-center shadow-sm">
+<div>إجمالي المدعوين</div>
+<h3>{{ total }}</h3>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card p-3 text-center shadow-sm">
+<div>تم الإرسال</div>
+<h3 class="text-success">{{ sent }}</h3>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card p-3 text-center shadow-sm">
+<div>فشل الإرسال</div>
+<h3 class="text-danger">{{ failed }}</h3>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card p-3 text-center shadow-sm">
+<div>أكدوا الحضور</div>
+<h3 class="text-success">{{ confirmed }}</h3>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card p-3 text-center shadow-sm">
+<div>اعتذار</div>
+<h3 class="text-warning">{{ declined }}</h3>
+</div>
+</div>
+
+</div>
+
+
+<!-- نسبة نجاح الإرسال -->
+
+<div class="card p-4 mb-4 shadow-sm">
+
+<h6 class="mb-3">نسبة نجاح الإرسال</h6>
+
+<div class="progress" style="height:25px">
+
+<div class="progress-bar bg-dark"
+role="progressbar"
+style="width: {{ success_rate }}%">
+
+{{ success_rate }}%
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- أزرار التحكم -->
+
+<div class="d-flex justify-content-between mb-3">
+
+<a href="{{ url_for('main.upload_guests') }}"
+class="btn btn-dark">
+رفع قائمة المدعوين
+</a>
+
+<a href="{{ url_for('main.resend_all_failed') }}"
+class="btn btn-secondary">
+إعادة إرسال الفاشلين
+</a>
+
+</div>
+
+
+<!-- جدول الضيوف -->
+
+<div class="card shadow-sm">
+
+<div class="card-body table-responsive">
+
+<table class="table table-hover text-center">
+
+<thead class="table-light">
+
+<tr>
+<th>الاسم</th>
+<th>الجوال</th>
+<th>حالة الإرسال</th>
+<th>الرد</th>
+<th>إجراء</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for guest in guests %}
+
+<tr>
+
+<td>{{ guest.name }}</td>
+
+<td>{{ guest.phone }}</td>
+
+<td>
+
+{% if guest.invitation_status == "failed" %}
+
+<span class="badge bg-danger">فشل</span>
+
+{% elif guest.invitation_status == "sent" %}
+
+<span class="badge bg-success">تم</span>
+
+{% else %}
+
+<span class="badge bg-secondary">انتظار</span>
+
+{% endif %}
+
+</td>
+
+<td>
+
+{% if guest.status == "confirmed" %}
+
+<span class="badge bg-success">تأكيد</span>
+
+{% elif guest.status == "declined" %}
+
+<span class="badge bg-warning">اعتذار</span>
+
+{% else %}
+
+<span class="badge bg-secondary">لم يرد</span>
+
+{% endif %}
+
+</td>
+
+<td>
+
+{% if guest.invitation_status == "failed" %}
+
+<a href="{{ url_for('main.resend_invitation', guest_id=guest.id) }}"
+class="btn btn-sm btn-dark">
+إعادة إرسال
+</a>
+
+{% else %}
+
+-
+
+{% endif %}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

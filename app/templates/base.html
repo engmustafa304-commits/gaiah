@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            background: #F8F9FA;
+            font-family: "Tajawal", sans-serif;
+        }
+
+        .navbar {
+            background: #212529;
+        }
+
+        .navbar-brand {
+            color: #F8F9FA !important;
+            font-weight: bold;
+        }
+
+        .card-stat {
+            border: none;
+            border-radius: 15px;
+            background: #FFFFFF;
+            transition: .3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .card-stat:hover {
+            transform: translateY(-4px);
+        }
+
+        .stat-title {
+            color: #6C757D;
+            font-size: 14px;
+        }
+
+        .stat-number {
+            color: #212529;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .table thead {
+            background: #E9ECEF;
+        }
+
+        .badge-confirmed {
+            background: #343A40;
+        }
+
+        .badge-declined {
+            background: #6C757D;
+        }
+
+        .badge-failed {
+            background: #495057;
+        }
+    </style>
+</head>
+
+<body>
+
+{% include "partials/navbar.html" %}
+
+<div class="container mt-4">
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

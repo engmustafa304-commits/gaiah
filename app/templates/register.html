@@ -1,0 +1,14 @@
+<h2>إنشاء حساب</h2>
+
+{% for message in get_flashed_messages() %}
+<p style="color:red">{{ message }}</p>
+{% endfor %}
+
+<form method="POST">
+    <input type="text" name="name" placeholder="الاسم" required>
+    <input type="email" name="email" placeholder="البريد" required>
+    <input type="password" name="password" placeholder="كلمة المرور" required>
+    <button type="submit">تسجيل</button>
+</form>
+
+<a href="{{ url_for('auth.login') }}">تسجيل دخول</a>

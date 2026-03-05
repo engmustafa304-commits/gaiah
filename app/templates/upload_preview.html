@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}معاينة الضيوف{% endblock %}
+
+{% block content %}
+
+<h4 class="mb-4">معاينة البيانات</h4>
+
+<div class="mb-3">
+    <span class="badge bg-success">صالحة: {{ valid_count }}</span>
+    <span class="badge bg-danger">مكررة: {{ duplicate_count }}</span>
+</div>
+
+<form method="POST" action="{{ url_for('main.save_guests') }}">
+
+<div class="card shadow-sm">
+    <div class="card-body table-responsive">
+
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <th>الاسم</th>
+                    <th>الجوال</th>
+                    <th>الحالة</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for guest in preview_data %}
+                <tr>
+                    <td>{{ guest.name }}</td>
+                    <td>{{ guest.phone }}</td>
+                    <td>
+                        {% if guest.status == "duplicate" %}
+                            <span class="badge bg-danger">مكرر</span>
+                        {% else %}
+                            <span class="badge bg-success">صالح</span>
+                            <input type="hidden" name="guest_data"
+                                   value="{{ guest.name }}|{{ guest.phone }}">
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<button class="btn btn-dark mt-3">
+    حفظ الضيوف
+</button>
+
+</form>
+
+{% endblock %}

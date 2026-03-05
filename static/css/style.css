@@ -1,0 +1,150 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Cairo', sans-serif;
+}
+
+body{
+    background:#F8F9FA;
+    color:#212529;
+}
+
+/* NAVBAR */
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    background:white;
+    border-bottom:1px solid #DEE2E6;
+}
+
+.logo img{
+    height:40px;
+}
+
+.menu{
+    display:flex;
+    gap:30px;
+    list-style:none;
+    color:#495057;
+    font-weight:600;
+}
+
+/* HERO */
+.hero{
+    min-height:100vh;
+    background:#E9ECEF;
+    display:flex;
+    align-items:center;
+    padding:0 8%;
+}
+
+.hero-content{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    width:100%;
+}
+
+.hero-text{
+    width:50%;
+}
+
+.hero-text h1{
+    font-size:42px;
+    margin-bottom:20px;
+}
+
+.hero-text p{
+    font-size:18px;
+    color:#6C757D;
+    margin-bottom:30px;
+}
+
+.btn-main{
+    background:#343A40;
+    color:white;
+    padding:14px 30px;
+    border-radius:40px;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.btn-main:hover{
+    background:#212529;
+}
+
+.hero-phone{
+    width:50%;
+    display:flex;
+    justify-content:flex-end;
+}
+
+.hero-phone img{
+    width:420px;
+    max-width:100%;
+}
+
+/* FEATURES */
+.features{
+    padding:80px 8%;
+    text-align:center;
+}
+
+.features h2{
+    margin-bottom:50px;
+}
+
+.features-grid{
+    display:flex;
+    gap:30px;
+    justify-content:center;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    width:300px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.05);
+}
+
+/* PRICING */
+.pricing{
+    padding:80px 8%;
+    background:#E9ECEF;
+    text-align:center;
+}
+
+.pricing-grid{
+    display:flex;
+    gap:30px;
+    justify-content:center;
+}
+
+.price-card{
+    background:white;
+    padding:40px;
+    width:280px;
+    border-radius:15px;
+}
+
+.highlight{
+    border:2px solid #343A40;
+}
+
+.price{
+    font-size:28px;
+    margin-top:20px;
+    font-weight:700;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:30px;
+    background:#343A40;
+    color:white;
+}
