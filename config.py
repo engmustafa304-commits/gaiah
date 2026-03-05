@@ -1,5 +1,8 @@
 class Config:
     SECRET_KEY = "super-secret-key-123"
 
-    SQLALCHEMY_DATABASE_URI = "postgresql://postgres:123456@localhost:5432/giyah"
+class Config:
+    SECRET_KEY = "super-secret-key-123"
+
+    SQLALCHEMY_DATABASE_URI = "sqlite:///gaiah.db"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
