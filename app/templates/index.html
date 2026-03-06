@@ -1,83 +1,176 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gaiah</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gaiah | جية</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+background:#F8F9FA;
+font-family: 'Cairo', sans-serif;
+}
+
+.navbar{
+background:#212529;
+}
+
+.navbar-brand{
+color:white;
+font-weight:bold;
+}
+
+.hero{
+height:80vh;
+display:flex;
+align-items:center;
+background:#E9ECEF;
+}
+
+.hero h1{
+font-size:50px;
+color:#212529;
+}
+
+.btn-main{
+background:#212529;
+color:white;
+padding:12px 30px;
+border-radius:8px;
+}
+
+.features{
+padding:80px 0;
+}
+
+.feature-box{
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 5px 20px rgba(0,0,0,0.05);
+}
+
+.footer{
+background:#212529;
+color:white;
+padding:30px;
+text-align:center;
+}
+
+</style>
+
 </head>
 
 <body>
 
-<header class="navbar">
-    <div class="logo">
-        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo">
-    </div>
-    <ul class="menu">
-        <li>الباقات</li>
-        <li>المميزات</li>
-        <li>لماذا جيه</li>
-        <li>تواصل</li>
-    </ul>
-</header>
+
+<!-- Navbar -->
+
+<nav class="navbar navbar-expand-lg">
+
+<div class="container">
+
+<a class="navbar-brand" href="#">Gaiah | جية</a>
+
+<div>
+
+<a class="btn btn-light" href="/login">Login</a>
+
+</div>
+
+</div>
+
+</nav>
+
+
+<!-- Hero -->
 
 <section class="hero">
-    <div class="hero-content">
 
-        <div class="hero-text">
-            <h1>منصة دعوات رقمية احترافية</h1>
-            <p>إدارة الدعوات والحضور بطريقة عصرية سهلة وأنيقة</p>
-            <a href="#" class="btn-main">ابدأ الآن</a>
-        </div>
+<div class="container text-center">
 
-        <div class="hero-phone">
-            <img src="{{ url_for('static', filename='images/phone.png') }}" alt="phone">
-        </div>
+<h1>منصة جية</h1>
 
-    </div>
+<p class="lead">
+
+منصة ضيافة وتجارب محلية تجمع بين الترحيب السعودي الأصيل والأسعار الذكية
+
+</p>
+
+<a href="/login" class="btn btn-main mt-3">
+
+ابدأ الآن
+
+</a>
+
+</div>
+
 </section>
+
+
+<!-- Features -->
 
 <section class="features">
-    <h2>مميزات المنصة</h2>
-    <div class="features-grid">
-        <div class="card">
-            <h3>إدارة حضور ذكية</h3>
-            <p>متابعة تأكيد الحضور بشكل مباشر</p>
-        </div>
-        <div class="card">
-            <h3>QR Code تلقائي</h3>
-            <p>تأكيد دخول سريع ومنظم</p>
-        </div>
-        <div class="card">
-            <h3>تصاميم فاخرة</h3>
-            <p>قوالب راقية تناسب كل المناسبات</p>
-        </div>
-    </div>
+
+<div class="container">
+
+<div class="row g-4">
+
+<div class="col-md-4">
+
+<div class="feature-box text-center">
+
+<h4>الدعوات الذكية</h4>
+
+<p>إنشاء وإرسال الدعوات بسهولة</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="feature-box text-center">
+
+<h4>QR Code</h4>
+
+<p>تسجيل حضور الضيوف بالباركود</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="feature-box text-center">
+
+<h4>إدارة الضيوف</h4>
+
+<p>متابعة الحضور بسهولة</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </section>
 
-<section class="pricing">
-    <h2>الباقات</h2>
-    <div class="pricing-grid">
-        <div class="price-card">
-            <h3>أساسية</h3>
-            <p class="price">99 ريال</p>
-        </div>
-        <div class="price-card highlight">
-            <h3>احترافية</h3>
-            <p class="price">199 ريال</p>
-        </div>
-        <div class="price-card">
-            <h3>مميزة</h3>
-            <p class="price">299 ريال</p>
-        </div>
-    </div>
-</section>
 
-<footer>
-    <p>© 2026 Gaiah - جميع الحقوق محفوظة</p>
-</footer>
+<!-- Footer -->
+
+<div class="footer">
+
+<p>© 2026 Gaiah Platform</p>
+
+</div>
 
 </body>
 </html>
