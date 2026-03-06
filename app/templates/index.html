@@ -4,30 +4,40 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Gaiah | جية</title>
+<title>GAIAH | منصة الدعوات الذكية</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
 body{
 font-family:'Cairo',sans-serif;
-background:#F8F9FA;
+background:#f8f9fa;
 }
+
+/* Navbar */
 
 .navbar{
 background:#212529;
+padding:15px;
 }
 
-.navbar-brand{
+.navbar a{
 color:white;
-font-weight:bold;
-font-size:22px;
+margin-left:20px;
+text-decoration:none;
+font-weight:500;
 }
+
+.navbar a:hover{
+color:#d4af37;
+}
+
+/* Hero */
 
 .hero{
 height:90vh;
@@ -35,53 +45,79 @@ display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
-background:linear-gradient(135deg,#E9ECEF,#F8F9FA);
+background:linear-gradient(135deg,#212529,#000);
+color:white;
 }
 
 .hero h1{
-font-size:55px;
+font-size:50px;
 font-weight:700;
-color:#212529;
 }
 
 .hero p{
 font-size:20px;
-color:#495057;
 }
 
-.btn-main{
-background:#212529;
-color:white;
-padding:14px 35px;
-border-radius:8px;
-font-size:18px;
+/* sections */
+
+section{
+padding:80px 0;
 }
 
-.section-title{
-font-size:35px;
+h2{
 font-weight:700;
-margin-bottom:40px;
+margin-bottom:30px;
 }
 
-.feature{
+/* phone demo */
+
+.phone{
+width:260px;
+margin:auto;
+background:black;
+border-radius:30px;
+padding:15px;
+}
+
+.chat{
+background:white;
+padding:20px;
+border-radius:20px;
+text-align:center;
+}
+
+.accept{
+background:#28a745;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:10px;
+margin:5px;
+}
+
+.decline{
+background:#dc3545;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:10px;
+margin:5px;
+}
+
+/* pricing */
+
+.price-card{
 background:white;
 padding:30px;
-border-radius:12px;
-box-shadow:0 10px 30px rgba(0,0,0,0.05);
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
 }
 
 .footer{
 background:#212529;
 color:white;
-padding:40px;
 text-align:center;
-margin-top:60px;
-}
-
-.lang-switch{
-cursor:pointer;
-color:white;
-margin-left:15px;
+padding:20px;
 }
 
 </style>
@@ -90,40 +126,40 @@ margin-left:15px;
 
 <body>
 
-<!-- Navbar -->
+<!-- NAVBAR -->
 
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar fixed-top">
 
 <div class="container">
 
-<a class="navbar-brand">Gaiah | جية</a>
+<a href="#">GAIAH</a>
 
 <div>
 
-<span class="lang-switch" onclick="switchLang()">EN</span>
-
-<a href="/login" class="btn btn-light ms-3">Login</a>
+<a href="#about">من نحن</a>
+<a href="#features">المميزات</a>
+<a href="#demo">التجربة</a>
+<a href="#pricing">الأسعار</a>
 
 </div>
+
+<a href="/login" class="btn btn-light">تسجيل الدخول</a>
 
 </div>
 
 </nav>
 
-
-<!-- Hero -->
+<!-- HERO -->
 
 <section class="hero">
 
-<div class="container">
+<div>
 
-<h1 id="title">منصة جية</h1>
+<h1>منصة الدعوات الذكية</h1>
 
-<p id="desc">
-منصة ضيافة وتجارب محلية تجمع بين الترحيب السعودي الأصيل والأسعار الذكية
-</p>
+<p>أنشئ دعوتك الرقمية وأرسلها للضيوف بسهولة</p>
 
-<a href="/login" class="btn btn-main mt-4" id="start">
+<a href="/register" class="btn btn-warning btn-lg mt-3">
 ابدأ الآن
 </a>
 
@@ -131,50 +167,127 @@ margin-left:15px;
 
 </section>
 
+<!-- ABOUT -->
 
-<!-- Features -->
+<section id="about" class="container text-center">
 
-<section class="container text-center mt-5">
+<h2>من نحن</h2>
 
-<h2 class="section-title" id="features_title">
+<p>
+جيّة منصة متخصصة في تصميم الدعوات الرقمية وإدارة الحضور
+للمناسبات بطريقة سهلة واحترافية.
+</p>
 
-مميزات المنصة
+<h3 class="mt-5">رؤيتنا</h3>
 
-</h2>
+<p>
+أن نكون الوجهة الأولى لإدارة الدعوات الرقمية وتنظيم المناسبات.
+</p>
 
-<div class="row g-4">
+<h3 class="mt-5">رسالتنا</h3>
 
-<div class="col-md-4">
+<p>
+تقديم تجربة رقمية حديثة تسهل إدارة الدعوات والحضور.
+</p>
 
-<div class="feature">
+</section>
 
-<h4 id="f1">الدعوات الذكية</h4>
+<!-- FEATURES -->
 
-<p id="f1d">إنشاء وإرسال الدعوات بسهولة</p>
+<section id="features" class="container text-center">
 
-</div>
+<h2>مميزات المنصة</h2>
 
-</div>
-
-<div class="col-md-4">
-
-<div class="feature">
-
-<h4 id="f2">QR Code</h4>
-
-<p id="f2d">تسجيل حضور الضيوف بالباركود</p>
-
-</div>
-
-</div>
+<div class="row">
 
 <div class="col-md-4">
 
-<div class="feature">
+<h4>دعوات رقمية</h4>
+<p>إنشاء دعوة أنيقة للمناسبة</p>
 
-<h4 id="f3">إدارة الضيوف</h4>
+</div>
 
-<p id="f3d">متابعة الحضور بسهولة</p>
+<div class="col-md-4">
+
+<h4>QR Code</h4>
+<p>دخول الضيوف باستخدام الباركود</p>
+
+</div>
+
+<div class="col-md-4">
+
+<h4>إدارة الضيوف</h4>
+<p>متابعة الحضور والاعتذار بسهولة</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- DEMO PHONE -->
+
+<section id="demo" class="text-center">
+
+<h2>تجربة الدعوة</h2>
+
+<div class="phone">
+
+<div class="chat">
+
+<p>🎉 تمت دعوتك لحضور المناسبة</p>
+
+<button class="accept">تأكيد الحضور</button>
+
+<button class="decline">اعتذار</button>
+
+<p class="mt-3">📍 موقع المناسبة</p>
+
+<a href="#">عرض الموقع</a>
+
+<p class="mt-3">🔳 رمز الدخول</p>
+
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=event">
+
+</div>
+
+</div>
+
+</section>
+
+<!-- PRICING -->
+
+<section id="pricing" class="container text-center">
+
+<h2>أسعار الباقات</h2>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<div class="price-card">
+
+<h3>الباقة الأساسية</h3>
+
+<p>50 ضيف — 350 ريال</p>
+<p>100 ضيف — 700 ريال</p>
+<p>150 ضيف — 1050 ريال</p>
+<p>200 ضيف — 1400 ريال</p>
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="price-card">
+
+<h3>الباقة الشاملة</h3>
+
+<p>50 ضيف — 400 ريال</p>
+<p>100 ضيف — 800 ريال</p>
+<p>150 ضيف — 1200 ريال</p>
+<p>200 ضيف — 1600 ريال</p>
 
 </div>
 
@@ -184,68 +297,23 @@ margin-left:15px;
 
 </section>
 
+<!-- CONTACT -->
 
-<!-- Footer -->
+<section class="container text-center">
+
+<h2>تواصل معنا</h2>
+
+<p>واتساب: 966xxxxxxxx+</p>
+
+</section>
+
+<!-- FOOTER -->
 
 <div class="footer">
 
-<p>© 2026 Gaiah Platform</p>
+GAIAH © جميع الحقوق محفوظة
 
 </div>
 
-
-<script>
-
-let lang="ar"
-
-function switchLang(){
-
-const title=document.getElementById("title")
-const desc=document.getElementById("desc")
-const start=document.getElementById("start")
-const features_title=document.getElementById("features_title")
-const f1=document.getElementById("f1")
-const f1d=document.getElementById("f1d")
-const f2=document.getElementById("f2")
-const f2d=document.getElementById("f2d")
-const f3=document.getElementById("f3")
-const f3d=document.getElementById("f3d")
-
-if(lang=="ar"){
-
-document.documentElement.dir="ltr"
-
-title.innerText="Gaiah Platform"
-
-desc.innerText="A hospitality and local experiences platform combining authentic Saudi welcome with smart pricing"
-
-start.innerText="Start Now"
-
-features_title.innerText="Platform Features"
-
-f1.innerText="Smart Invitations"
-f1d.innerText="Create and send invitations easily"
-
-f2.innerText="QR Check-in"
-f2d.innerText="Guest check-in using QR code"
-
-f3.innerText="Guest Management"
-f3d.innerText="Track attendance easily"
-
-lang="en"
-
-}
-
-else{
-
-location.reload()
-
-}
-
-}
-
-</script>
-
 </body>
-
 </html>
