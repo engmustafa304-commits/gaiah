@@ -1,16 +1,14 @@
-from flask import Flask
-from config import Config
-from models.extensions import db
+from flask import Flask, render_template
 
 app = Flask(__name__)
-app.config.from_object(Config)
-
-db.init_app(app)
-
-from models.user import User
-from models.event import Event
-from models.guest import Guest
 
 @app.route("/")
 def home():
-    return "App Working"
+    return render_template("index.html")
+
+@app.route("/login")
+def login():
+    return render_template("login.html")
+
+if __name__ == "__main__":
+    app.run(debug=True)
