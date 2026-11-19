@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><script src="lang.js"></script>
+<title>الدعم | جيّة</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Lora:wght@400;500&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="luxury.css"></head>
+<body data-page="support">
+<div id="site-header"></div>
+<section class="page-head"><div class="wrap"><span class="eyebrow">الدعم والمساعدة</span><h1>كيف نساعدك؟</h1><p class="muted">إجابات سريعة لأكثر الأسئلة، وفريقنا جاهز لأي استفسار.</p></div></section>
+
+<section class="sec" id="faq" style="padding-top:44px"><div class="wrap">
+  <div class="chn rv">
+    <a href="#"><i>💬</i><b>واتساب</b><span>رد خلال دقائق</span></a>
+    <a href="#"><i>✉️</i><b>البريد الإلكتروني</b><span>info@example.com</span></a>
+    <a href="#"><i>📞</i><b>اتصل بنا</b><span>من 9 صباحًا إلى 9 مساءً</span></a>
+  </div>
+  <div class="sec-head" style="justify-content:center;text-align:center;margin-top:70px"><div><span class="eyebrow">الأسئلة الشائعة</span><h2>كل ما تود معرفته</h2></div></div>
+  <div class="cities" id="fc" style="justify-content:center;margin-bottom:26px"></div>
+  <div class="faq" id="fl"></div>
+</div></section>
+
+<section class="sec steps" id="contact"><div class="wrap">
+  <div class="cform">
+    <div><span class="eyebrow">تواصل معنا</span><h2>اطلب اتصالًا من فريقنا</h2><p class="muted" style="margin-top:10px">اترك بياناتك وسيتواصل معك أحد المختصين في أقرب وقت.</p></div>
+    <form id="cf" class="panel">
+      <div class="fgrid"><div class="fg1"><label>الاسم</label><input required></div><div class="fg1"><label>رقم الجوال</label><input inputmode="tel" dir="ltr" style="text-align:right" placeholder="05xxxxxxxx" required></div></div>
+      <div class="fg1"><label>الموضوع</label><select><option>استفسار عن حجز</option><option>الدفع والتقسيط</option><option>الإلغاء والاسترداد</option><option>الانضمام كمزود خدمة</option><option>أخرى</option></select></div>
+      <div class="fg1"><label>رسالتك</label><textarea rows="4" required></textarea></div>
+      <button class="btn btn-gold" type="submit">إرسال الطلب</button>
+      <p class="muted sm" id="cm" style="margin-top:10px"></p>
+    </form>
+  </div>
+</div></section>
+<div id="site-footer"></div>
+<script src="data.js"></script><script src="art.js"></script><script src="store.js"></script><script src="common.js"></script><script src="i18n-en.js"></script><script src="i18n-en2.js"></script><script src="i18n-en3.js"></script><script src="i18n.js"></script><script src="/vendor/lenis.min.js"></script><script src="fx.js"></script>
+<script>
+const Q=[
+ ["الحجز","كيف أحجز قاعة؟","اختر القاعة والتاريخ المتاح، ثم اضغط «اطلب الحجز»، وسيتواصل معك فريق القاعة لتأكيد التفاصيل ويصلك عقد إلكتروني."],
+ ["الحجز","كيف أعرف أن التاريخ متاح؟","في صفحة كل قاعة قسم «التوافر» يعرض التقويم بالأيام المتاحة والمحجوزة، واختيار يوم متاح يضيفه تلقائيًا إلى طلبك."],
+ ["الحجز","ما الفرق بين القاعة والبكج؟","القاعة هي المكان فقط، أما البكج فيجمع القاعة مع خدمات مشمولة مثل البوفيه والكيكة والتنسيق والخدمة بعدد ضيوف وتواريخ محددة."],
+ ["الدفع","هل يمكن الدفع بالتقسيط؟","نعم، في القاعات والبكجات التي تحمل شارة «ادفع بالتقسيط». تخضع الموافقة وشروطها لمزود خدمة الدفع."],
+ ["الدفع","ما طرق الدفع المتاحة؟","مدى وبطاقات الائتمان وApple Pay والتحويل البنكي، وتظهر الطرق المقبولة في صفحة كل قاعة."],
+ ["الإلغاء","هل يمكن إلغاء الحجز؟","يمكن الإلغاء وفق سياسة القاعة المعروضة في قسم «الإلغاء»، ويُسترد العربون كليًا أو جزئيًا بحسب المدة المتبقية على المناسبة."],
+ ["مزودو الخدمة","كيف أنضم كمزود خدمة؟","اضغط «انضم كمزود خدمة»، وأرسل بياناتك وسجلك التجاري، وسيتواصل معك فريقنا للتوثيق وتفعيل لوحة التحكم."],
+ ["مزودو الخدمة","كيف أدير حجوزاتي وتقويمي؟","من لوحة المزود يمكنك قبول الطلبات أو رفضها، وحظر الأيام غير المتاحة، ومتابعة المدفوعات والتقييمات."]
+];
+let cat="الكل";
+function render(){
+  $("#fc").innerHTML=["الكل",...new Set(Q.map(q=>q[0]))].map(c=>`<button class="chip ${c==cat?"on":""}" data-c="${c}">${c}</button>`).join("");
+  $$("#fc .chip").forEach(b=>b.onclick=()=>{cat=b.dataset.c;render()});
+  $("#fl").innerHTML=Q.filter(q=>cat=="الكل"||q[0]==cat).map(q=>`<details><summary>${q[1]}</summary><p>${q[2]}</p></details>`).join("");
+}
+render();
+$("#cf").onsubmit=e=>{e.preventDefault();$("#cm").textContent="تم استلام طلبك ✓ (محاكاة: لا يوجد خادم بعد). سنتواصل معك قريبًا."; e.target.reset()};
+</script></body></html>

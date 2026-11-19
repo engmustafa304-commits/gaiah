@@ -1,0 +1,38 @@
+# التشغيل على VPS:  docker compose up -d --build
+# المتطلبات: ملف .env بجانب هذا الملف (انظر .env.example) وتوجيه الدومين إلى IP الخادم.
+services:
+  gaiah:
+    build: .
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      SESSION_SECRET: ${SESSION_SECRET:?حدّد SESSION_SECRET في .env}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:?حدّد ADMIN_EMAIL في .env}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?حدّد ADMIN_PASSWORD في .env}
+      SEED_DEMO: ${SEED_DEMO:-false}
+      TRUST_PROXY: "true"
+    volumes:
+      - gaiah-data:/data
+    expose:
+      - "3000"
+
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    depends_on:
+      - gaiah
+    environment:
+      DOMAIN: ${DOMAIN:?حدّد DOMAIN في .env}
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+
+volumes:
+  gaiah-data:
+  caddy-data:
+  caddy-config:

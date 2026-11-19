@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><script src="lang.js"></script>
+<title>تفاصيل القاعة | جيّة</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Lora:wght@400;500&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="luxury.css"></head>
+<body data-page="halls">
+<div id="site-header"></div>
+<div class="wrap crumbs"><a href="index.html">الرئيسية</a> / <a href="halls.html">القاعات</a> / <span id="bc"></span></div>
+<section class="wrap" style="padding-bottom:70px">
+  <div class="gal" id="gal"></div>
+  <div class="detail">
+    <div>
+      <div class="dh"><div><span class="tag" id="tp"></span><h1 id="nm"></h1><p class="muted" id="loc"></p></div><div class="rate big" id="rt"></div></div>
+      <div class="facts" id="facts"></div>
+      <nav class="stabs" id="stabs"><a href="#s-details">التفاصيل</a><a href="#s-services">الخدمات</a><a href="#s-location">الموقع</a><a href="#s-reviews">المراجعات</a><a href="#s-avail">التوافر</a><a href="#s-cancel">الإلغاء</a></nav>
+      <section id="s-details">
+        <h2 class="h3">عن القاعة</h2>
+        <p id="about" class="muted" style="max-width:720px"></p>
+        <h2 class="h3">جولة 360°</h2>
+        <div class="tour"><div id="tourArt"></div><button class="btn btn-gold">▶ ابدأ الجولة</button></div>
+      </section>
+      <section id="s-services">
+        <h2 class="h3">المميزات والخدمات</h2>
+        <ul class="feats" id="feats"></ul>
+        <h2 class="h3">باقات القاعة</h2>
+        <div class="hpk" id="hpk"></div>
+      </section>
+      <section id="s-location">
+        <h2 class="h3">موقع القاعة</h2>
+        <div class="map" id="map"></div>
+        <div class="map-i"><div><b id="mn"></b><span class="muted" id="ma"></span></div><a class="btn btn-line" id="mlink" target="_blank" rel="noopener">فتح في الخرائط</a></div>
+      </section>
+      <section id="s-reviews">
+        <h2 class="h3">آراء العملاء</h2>
+        <div class="rsum" id="rsum"></div>
+        <div class="revs" id="revs"></div>
+      </section>
+      <section id="s-avail">
+        <h2 class="h3">التوافر</h2>
+        <p class="muted sm">اختر تاريخًا متاحًا ليُضاف تلقائيًا إلى نموذج الحجز.</p>
+        <div class="acal-w"><div class="cal-h"><button class="btn btn-line" id="apm" style="padding:6px 16px">›</button><h3 id="acm" style="font-size:1.3rem"></h3><button class="btn btn-line" id="anm" style="padding:6px 16px">‹</button></div>
+          <div class="acal" id="acal"></div>
+          <div class="leg"><span><i style="background:#fff;border:1px solid var(--line)"></i>متاح</span><span><i style="background:#e6e1d4"></i>محجوز</span><span><i style="background:var(--gold)"></i>تاريخك المختار</span></div></div>
+      </section>
+      <section id="s-cancel">
+        <h2 class="h3">سياسة الإلغاء</h2>
+        <div class="cancel-t" id="cancel"></div>
+        <h2 class="h3">طرق الدفع المقبولة</h2>
+        <div class="pay-chips"><span>مدى</span><span>Visa</span><span>Mastercard</span><span>Apple Pay</span><span>تحويل بنكي</span><span>التقسيط</span></div>
+        <p class="muted sm" style="margin-top:12px">تخضع الموافقة على التقسيط وشروطه لمزود خدمة الدفع.</p>
+      </section>
+    </div>
+    <aside class="book" id="book">
+      <h3 class="bk-t">احجز هذه القاعة</h3>
+      <div class="fg1"><label>الاسم</label><input id="bn" maxlength="40" autocomplete="name"></div>
+      <div class="fg1"><label>رقم الجوال</label><input id="bp" inputmode="tel" dir="ltr" style="text-align:right" placeholder="05xxxxxxxx" maxlength="10"></div>
+      <div class="fg1"><label>تاريخ المناسبة</label><input type="date" id="bd"></div>
+      <div class="fg1"><label>عدد الضيوف</label><input type="number" id="bg" min="50" value="150"></div>
+      <div class="fg1"><label>الباقة</label><select id="bpk"></select></div>
+      <label class="check" id="instw"><input type="checkbox" id="inst"> أرغب بالدفع بالتقسيط</label>
+      <button class="btn btn-gold" style="width:100%;justify-content:center" id="go">اطلب الحجز</button>
+      <p class="muted sm">عقد إلكتروني فوري · سيتواصل معك فريق القاعة لتأكيد التفاصيل</p>
+    </aside>
+  </div>
+  <h2 class="h3" style="margin-top:70px">قاعات مشابهة</h2><div class="grid" id="sim"></div>
+</section>
+<div class="modal" id="modal"><div class="mb"><div class="okc">✓</div><h3>تم استلام طلب الحجز</h3><p class="muted" id="mt"></p><a class="btn btn-ink" href="services.html">أكمل بخدمات المناسبة</a><button class="link" id="mc">إغلاق</button></div></div>
+<div class="modal" id="lb"><div class="mb lbm"><div class="lb-grid" id="lbg"></div><button class="link" id="lbc">إغلاق</button></div></div>
+<div id="site-footer"></div>
+<script src="data.js"></script><script src="art.js"></script><script src="store.js"></script><script src="common.js"></script><script src="i18n-en.js"></script><script src="i18n-en2.js"></script><script src="i18n-en3.js"></script><script src="i18n.js"></script><script src="/vendor/lenis.min.js"></script><script src="fx.js"></script>
+<script>
+const id=+(new URLSearchParams(location.search).get("id")||1),h=HALLS.find(x=>x.id===id)||HALLS[0];
+document.title=h.n+" | جيّة";
+const DBR=(typeof DB!=="undefined")?DB.reviews.filter(x=>x.vid===h.id&&x.status==="shown"):[];
+if(h.rv===0&&DBR.length){h.r=+(DBR.reduce((a,x)=>a+x.stars,0)/DBR.length).toFixed(1);h.rv=DBR.length}
+const imgAt=(i,w,hh)=>(h.photos&&h.photos.length)?`<img src="${h.photos[i%h.photos.length]}" alt="">`:art(h.s+i*7,w,hh);
+$("#bc").textContent=h.n;$("#nm").textContent=h.n;$("#tp").textContent=h.t;$("#loc").textContent="📍 "+(h.address||(h.c+" · حي تجريبي"));
+$("#rt").innerHTML=h.rv?`★ ${h.r}<small> (${h.rv} تقييم)</small>`:`<small>جديدة</small>`;
+$("#gal").innerHTML=[0,1,2,3,4].map(i=>`<div class="g${i}">${imgAt(i,i?400:900,i?300:600)}</div>`).join("");
+$("#facts").innerHTML=[["👥","السعة","حتى "+h.cap+" ضيف"],["🕒","مدة الحجز","5 ساعات"],["💳","التقسيط",h.i?"متاح":"غير متاح"],["🅿️","المواقف","متوفرة"]].map(([i,a,b])=>`<div><i>${i}</i><span>${a}</span><b>${b}</b></div>`).join("");
+$("#about").textContent=h.desc||`${h.n} في ${h.c} قاعة بطابع فاخر تناسب حفلات الزفاف والمناسبات الكبرى، بتصميم داخلي أنيق وإضاءة مدروسة وخدمة متكاملة تضمن ليلة لا تُنسى. (نص تجريبي)`;
+const esc2=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+$("#feats").innerHTML=(h.features&&h.features.length?h.features:FEATS[h.t]).map(f=>`<li><span class="tick">✦</span>${esc2(f)}</li>`).join("");
+$("#tourArt").innerHTML=art(h.s+3,900,380);
+const PK=[{n:"القاعة فقط",x:0,l:["إيجار القاعة 5 ساعات","إضاءة وصوت أساسي"]},{n:"الباقة الذهبية",x:6500,l:["كوشة وتنسيق ورد","ضيافة أساسية","مواقف مجانية للضيوف"]},{n:"الباقة الملكية",x:15000,l:["كوشة فاخرة وزفة","بوفيه كامل","تصوير فوتوغرافي","فريق تنظيم متكامل"]}];
+$("#hpk").innerHTML=PK.map((p,i)=>`<div class="pk ${i==1?"hot":""}"><h4>${p.n}</h4><ul>${p.l.map(x=>`<li><span class="tick">✦</span>${x}</li>`).join("")}</ul></div>`).join("");
+$("#revs").innerHTML=(DBR.length?DBR.map(x=>[x.name,x.stars,x.text]):[["نورة ع.",5,"تنظيم راقٍ وفريق متعاون جدًا، والقاعة أجمل من الصور."],["سعد م.",4,"موقع ممتاز وخدمة سريعة، والتقسيط ساعدنا كثيرًا."],["ريم ح.",5,"الإضاءة والصوت كانا مثاليين، أنصح بها."]]).map(([n,s,t])=>`<div class="rev"><b>${esc2(n)}</b><span class="rate">${"★".repeat(s)}${"☆".repeat(5-s)}</span><p>${esc2(t)}</p></div>`).join("");
+$("#bpk").innerHTML=PK.map((p,i)=>`<option value="${i}">${p.n}</option>`).join("");
+if(!h.i)$("#instw").style.display="none";
+const d=new Date();d.setMonth(d.getMonth()+2);$("#bd").min=new Date().toISOString().slice(0,10);$("#bd").value=d.toISOString().slice(0,10);
+$("#go").onclick=()=>{const g=+$("#bg").value,nm=$("#bn").value.trim(),ph=$("#bp").value.trim(),k=$("#bd").value;
+  if(g>h.cap){alert("عدد الضيوف يتجاوز سعة القاعة ("+h.cap+")");return}
+  if(nm.length<3||!/^05\d{8}$/.test(ph)){alert("أدخل الاسم ورقم جوال سعودي صحيح يبدأ بـ 05");return}
+  if(isBooked(k)){alert("هذا التاريخ غير متاح، اختر تاريخًا آخر من التقويم");return}
+  const pk=PK[$("#bpk").value].n,btn=$("#go");btn.disabled=true;
+  fetch("/api/bookings",{method:"POST",headers:{"Content-Type":"application/json","X-Requested-With":"gaiah"},body:JSON.stringify({vid:h.id,date:k,guests:g,pkg:pk,name:nm,phone:ph,installments:$("#inst").checked})})
+    .then(r=>r.json()).then(j=>{btn.disabled=false;if(!j.ok){alert(j.error||"تعذّر إرسال الطلب");return}
+      $("#mt").textContent=`${h.n} · ${$("#bd").value} · ${g} ضيف — ${PK[$("#bpk").value].n}. سيتواصل معك فريق القاعة لتأكيد الحجز. (محاكاة)`;$("#modal").classList.add("show")})
+    .catch(()=>{btn.disabled=false;alert("تعذّر الاتصال بالخادم")});};
+$("#mc").onclick=()=>$("#modal").classList.remove("show");
+
+// ===== أقسام إضافية: صور، تقييمات، خريطة، توافر، إلغاء =====
+$("#gal").insertAdjacentHTML("beforeend",'<button class="all-ph" id="allph">عرض كل الصور</button>');
+$("#allph").onclick=()=>{$("#lbg").innerHTML=[0,1,2,3,4,5,6,7].map(i=>`<div>${imgAt(i+5,520,360)}</div>`).join("");$("#lb").classList.add("show")};
+$("#lbc").onclick=()=>$("#lb").classList.remove("show");$("#lb").onclick=e=>{if(e.target.id==="lb")$("#lb").classList.remove("show")};
+$("#rsum").innerHTML=`<div class="big">${h.r}</div><div><span class="rate">${"★".repeat(Math.round(h.r))}${"☆".repeat(5-Math.round(h.r))}</span><p class="muted sm">بناءً على ${h.rv} تقييم</p></div>`;
+function mapArt(seed){const R=rnd(seed+9),W=800,H=320;let b=`<rect width="${W}" height="${H}" fill="#ece7da"/>`;
+  for(let i=0;i<26;i++){const x=R()*W,y=R()*H,w=40+R()*90,hh=24+R()*60;b+=`<rect x="${x.toFixed(0)}" y="${y.toFixed(0)}" width="${w.toFixed(0)}" height="${hh.toFixed(0)}" rx="6" fill="#f6f3ea" opacity="${(.6+R()*.4).toFixed(2)}"/>`}
+  b+=`<path d="M0 ${H*.72} Q${W*.3} ${H*.55} ${W*.55} ${H*.8} T${W} ${H*.62}" stroke="#b9c4c9" stroke-width="26" fill="none" opacity=".7"/>`;
+  for(let i=0;i<5;i++){const y=40+i*62+R()*10;b+=`<line x1="0" y1="${y.toFixed(0)}" x2="${W}" y2="${(y+R()*30-15).toFixed(0)}" stroke="#fff" stroke-width="${i%2?7:12}" opacity=".95"/>`}
+  for(let i=0;i<7;i++){const x=60+i*115+R()*20;b+=`<line x1="${x.toFixed(0)}" y1="0" x2="${(x+R()*40-20).toFixed(0)}" y2="${H}" stroke="#fff" stroke-width="${i%3?6:10}" opacity=".95"/>`}
+  b+=`<circle cx="${W/2}" cy="${H/2}" r="46" fill="#b8935a" opacity=".18"/><circle cx="${W/2}" cy="${H/2}" r="22" fill="#b8935a" opacity=".3"/><path d="M${W/2} ${H/2+6} c-18-22-28-34-28-50 a28 28 0 1 1 56 0 c0 16-10 28-28 50z" fill="#0e0e0e"/><circle cx="${W/2}" cy="${H/2-44}" r="10" fill="#d9b99b"/>`;
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">${b}</svg>`}
+$("#map").innerHTML=mapArt(h.s);$("#mn").textContent=h.n;$("#ma").textContent=h.address||(h.c+" · حي تجريبي");
+$("#mlink").href=h.mapUrl||("https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(h.n+" "+h.c));
+const POL=(h.policy&&h.policy.length?h.policy:[{d:30,p:100},{d:15,p:50},{d:0,p:0}]).slice().sort((a,b)=>b.d-a.d);
+$("#cancel").innerHTML=POL.map((t,i)=>[t.d>0?t.d+" يومًا أو أكثر قبل المناسبة":(i>0?"أقل من "+POL[i-1].d+" يومًا":"في أي وقت"),t.p>=100?"استرداد كامل للعربون":(t.p<=0?"لا يُسترد العربون":"استرداد "+t.p+"% من العربون")]).map(([a,b],i)=>`<div><i>${i+1}</i><b>${a}</b><span>${b}</span></div>`).join("");
+const MNm=["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];
+let ay=new Date().getFullYear(),am=new Date().getMonth();
+const dbB=(typeof DB!=="undefined")?DB.bookings.filter(b=>b.vid===h.id&&(b.status==="ok"||b.status==="wait")).map(b=>b.date):[];
+const dbBl=(typeof DB!=="undefined"&&DB.blocked[h.id])||[];
+const isBooked=k=>{if(!k)return false;const [y,m1,d]=k.split("-").map(Number),m=m1-1,wd=new Date(y,m,d).getDay();
+  return dbB.includes(k)||dbBl.includes(k)||(h.id<=12&&(((h.id*7+d*13+m*5+y)%5===0)||((wd===4||wd===5)&&((h.id+d+m)%3===0))))};
+const p2=n=>String(n).padStart(2,"0");
+function renderAvail(){
+  $("#acm").textContent=MNm[am]+" "+ay;
+  const first=new Date(ay,am,1).getDay(),dim=new Date(ay,am+1,0).getDate(),t0=new Date();t0.setHours(0,0,0,0);
+  let o=["أحد","اثنين","ثلاثاء","أربعاء","خميس","جمعة","سبت"].map(d=>`<div class="wd">${d}</div>`).join("")+Array(first).fill('<div class="ad off"></div>').join("");
+  for(let d=1;d<=dim;d++){const k=`${ay}-${p2(am+1)}-${p2(d)}`,past=new Date(ay,am,d)<t0,bk=isBooked(k);
+    o+=`<button type="button" class="ad ${past?"past":bk?"bk":"free"} ${$("#bd").value===k?"sel":""}" data-k="${k}" ${past||bk?"disabled":""}>${d}</button>`}
+  $("#acal").innerHTML=o;
+  $$("#acal .free").forEach(b=>b.onclick=()=>{$("#bd").value=b.dataset.k;renderAvail();$("#book").scrollIntoView({behavior:"smooth",block:"center"})});
+}
+$("#apm").onclick=()=>{am--;if(am<0){am=11;ay--}renderAvail()};$("#anm").onclick=()=>{am++;if(am>11){am=0;ay++}renderAvail()};
+$("#bd").addEventListener("input",renderAvail);renderAvail();
+const secs=["s-details","s-services","s-location","s-reviews","s-avail","s-cancel"];
+const tio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)$$("#stabs a").forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id))}),{rootMargin:"-30% 0px -60% 0px"});
+secs.forEach(s=>tio.observe(document.getElementById(s)));
+$("#sim").innerHTML=HALLS.filter(x=>x.id!==h.id&&(x.c==h.c||x.t==h.t)).slice(0,4).map(hallCard).join("");
+</script></body></html>

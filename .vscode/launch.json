@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "تشغيل الخادم (تصحيح)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/server/index.js",
+      "envFile": "${workspaceFolder}/.env",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "تشغيل الاختبارات",
+      "type": "node",
+      "request": "launch",
+      "runtimeArgs": ["--test", "test/"],
+      "console": "integratedTerminal"
+    }
+  ]
+}

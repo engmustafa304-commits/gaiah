@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><script src="lang.js"></script>
+<title>مزود الخدمة | جيّة</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Lora:wght@400;500&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="luxury.css"></head>
+<body data-page="services">
+<div id="site-header"></div>
+<div class="wrap crumbs"><a href="index.html">الرئيسية</a> / <a href="services.html">الخدمات</a> / <span id="bc"></span></div>
+<section class="wrap" style="padding-bottom:70px">
+  <div class="gal" id="gal"></div>
+  <div class="detail">
+    <div>
+      <div class="dh"><div><span class="tag" id="tp"></span><h1 id="nm"></h1><p class="muted" id="loc"></p><p class="v-ok">✓ مزود خدمة موثق · <span class="tag">ادفع بالتقسيط</span></p></div><div class="rate big" id="rt"></div></div>
+      <nav class="stabs" id="stabs"><a href="#s-pk">الباقات</a><a href="#s-works">نماذج الأعمال</a><a href="#s-loc">مواقع التواجد</a><a href="#s-rev">المراجعات</a><a href="#s-avail">التوافر</a><a href="#s-know">أشياء يجب معرفتها</a></nav>
+
+      <section id="s-pk"><h2 class="h3">الباقات</h2><div class="vpks" id="vpks"></div></section>
+      <section id="s-works"><h2 class="h3">نماذج الأعمال</h2><div class="works" id="works"></div></section>
+      <section id="s-loc"><h2 class="h3">مواقع التواجد</h2><div class="areas" id="areas"></div><div class="map" id="map" style="margin-top:14px"></div>
+        <div class="map-i"><div><b id="mn"></b><span class="muted" id="ma"></span></div><a class="btn btn-line" id="mlink" target="_blank" rel="noopener">فتح في الخرائط</a></div></section>
+      <section id="s-rev"><h2 class="h3">آراء العملاء</h2><div class="rsum" id="rsum"></div><div class="revs" id="revs"></div></section>
+      <section id="s-avail"><h2 class="h3">التوافر</h2><p class="muted sm">اختر تاريخًا متاحًا ليُضاف تلقائيًا إلى نموذج الحجز.</p>
+        <div class="acal-w"><div class="cal-h"><button class="btn btn-line" id="apm" style="padding:6px 16px">›</button><h3 id="acm" style="font-size:1.3rem"></h3><button class="btn btn-line" id="anm" style="padding:6px 16px">‹</button></div>
+          <div class="acal" id="acal"></div>
+          <div class="leg"><span><i style="background:#fff;border:1px solid var(--line)"></i>متاح</span><span><i style="background:#e6e1d4"></i>محجوز</span><span><i style="background:var(--gold)"></i>تاريخك المختار</span></div></div></section>
+      <section id="s-know"><h2 class="h3">أشياء يجب معرفتها</h2>
+        <div class="cancel-t know"><div><i>↻</i><b>إعادة البيع</b><span>يمكنك طلب إعادة البيع في أي وقت قبل المناسبة، ويبقى حجزك ساريًا ما لم يتم تأكيد حجز بديل بنجاح.</span></div>
+          <div><i>⏱</i><b>سياسة الإلغاء</b><span>لاسترجاع العربون يجب الإلغاء قبل 12 يومًا على الأقل من موعد الحجز.</span></div>
+          <div><i>💬</i><b>التواصل قبل الحجز</b><span>يمكنك التواصل مع مزود الخدمة قبل الحجز للحصول على التفاصيل.</span></div></div></section>
+    </div>
+    <aside class="book" id="book">
+      <h3 class="bk-t">احجز هذه الخدمة</h3>
+      <div class="fg1"><label>تاريخ المناسبة</label><input type="date" id="bd"></div>
+      <div class="fg1"><label>المدينة</label><select id="bc2"></select></div>
+      <div class="fg1"><label>الباقة</label><select id="bpk"></select></div>
+      <div class="fg1"><label>ملاحظات (اختياري)</label><textarea id="bn" rows="2" placeholder="موقع الحفل، عدد الضيوف…"></textarea></div>
+      <label class="check"><input type="checkbox" id="inst"> أرغب بالدفع بالتقسيط</label>
+      <button class="btn btn-gold" style="width:100%;justify-content:center" id="go">اطلب الحجز</button>
+      <p class="muted sm">سيتواصل معك مزود الخدمة لتأكيد التفاصيل</p>
+    </aside>
+  </div>
+  <h2 class="h3" style="margin-top:70px">مزودون مشابهون</h2><div class="grid" id="sim"></div>
+</section>
+<div class="modal" id="modal"><div class="mb"><div class="okc">✓</div><h3>تم استلام طلب الحجز</h3><p class="muted" id="mt"></p><a class="btn btn-ink" href="halls.html">تصفّح القاعات</a><button class="link" id="mc">إغلاق</button></div></div>
+<div class="modal" id="lb"><div class="mb lbm"><div class="lb-grid" id="lbg"></div><button class="link" id="lbc">إغلاق</button></div></div>
+<div id="site-footer"></div>
+<script src="data.js"></script><script src="art.js"></script><script src="store.js"></script><script src="common.js"></script><script src="i18n-en.js"></script><script src="i18n-en2.js"></script><script src="i18n-en3.js"></script><script src="i18n.js"></script><script src="/vendor/lenis.min.js"></script><script src="fx.js"></script>
+<script>
+const id=+(new URLSearchParams(location.search).get("id")||1),v=SVCS.find(x=>x.id===id)||SVCS[0];
+document.title=v.n+" | جيّة";
+$("#bc").textContent=v.n;$("#nm").textContent=v.n;$("#tp").textContent=v.cat;$("#loc").textContent="📍 "+v.areas.join("، ");
+$("#rt").innerHTML=`★ ${v.r}<small> (${v.rv} تقييم)</small>`;
+$("#gal").innerHTML=[0,1,2,3,4].map(i=>`<div class="g${i}">${art(v.s+i*7,i?400:900,i?300:600)}</div>`).join("")+'<button class="all-ph" id="allph">عرض كل الصور</button>';
+$("#allph").onclick=()=>{$("#lbg").innerHTML=[0,1,2,3,4,5,6,7].map(i=>`<div>${art(v.s+i*5,520,360)}</div>`).join("");$("#lb").classList.add("show")};
+$("#lbc").onclick=()=>$("#lb").classList.remove("show");$("#lb").onclick=e=>{if(e.target.id==="lb")$("#lb").classList.remove("show")};
+
+// الباقات
+$("#vpks").innerHTML=v.pk.map((p,i)=>`<article class="vpk ${p.pop?"hot":""}">
+  <div class="vh"><h3>${p.n}</h3>${p.pop?'<span class="pop3">الأكثر طلبًا</span>':""}</div>
+  <div class="vrow"><i>✦</i><div><b>ما تشمله الباقة</b><ul>${p.inc.map(x=>`<li>${x}</li>`).join("")}</ul></div></div>
+  <div class="vrow"><i>👥</i><div><b>فريق العمل</b><p>${p.team}</p></div></div>
+  ${p.gifts.length?`<div class="vrow"><i>🎁</i><div><b>هدايا مجانية</b><ul>${p.gifts.map(x=>`<li>${x}</li>`).join("")}</ul></div></div>`:""}
+  <button class="btn ${p.pop?"btn-gold":"btn-line"} pick" data-i="${i}">اختر هذه الباقة</button></article>`).join("");
+$$("#vpks .pick").forEach(b=>b.onclick=()=>{$("#bpk").value=b.dataset.i;$("#book").scrollIntoView({behavior:"smooth",block:"center"})});
+// الأعمال
+$("#works").innerHTML=[0,1,2,3,4,5].map(i=>`<div class="w${i}">${art(v.s+i*3+1,i%3==0?500:360,i%3==0?420:300)}</div>`).join("");
+// مواقع التواجد
+$("#areas").innerHTML=v.areas.map(a=>`<span>📍 ${a}</span>`).join("");
+function mapArt(seed){const R=rnd(seed+9),W=800,H=320;let b=`<rect width="${W}" height="${H}" fill="#ece7da"/>`;
+  for(let i=0;i<26;i++){const x=R()*W,y=R()*H,w=40+R()*90,hh=24+R()*60;b+=`<rect x="${x.toFixed(0)}" y="${y.toFixed(0)}" width="${w.toFixed(0)}" height="${hh.toFixed(0)}" rx="6" fill="#f6f3ea" opacity="${(.6+R()*.4).toFixed(2)}"/>`}
+  b+=`<path d="M0 ${H*.72} Q${W*.3} ${H*.55} ${W*.55} ${H*.8} T${W} ${H*.62}" stroke="#b9c4c9" stroke-width="26" fill="none" opacity=".7"/>`;
+  for(let i=0;i<5;i++){const y=40+i*62+R()*10;b+=`<line x1="0" y1="${y.toFixed(0)}" x2="${W}" y2="${(y+R()*30-15).toFixed(0)}" stroke="#fff" stroke-width="${i%2?7:12}" opacity=".95"/>`}
+  for(let i=0;i<7;i++){const x=60+i*115+R()*20;b+=`<line x1="${x.toFixed(0)}" y1="0" x2="${(x+R()*40-20).toFixed(0)}" y2="${H}" stroke="#fff" stroke-width="${i%3?6:10}" opacity=".95"/>`}
+  b+=`<circle cx="${W/2}" cy="${H/2}" r="46" fill="#b8935a" opacity=".18"/><path d="M${W/2} ${H/2+6} c-18-22-28-34-28-50 a28 28 0 1 1 56 0 c0 16-10 28-28 50z" fill="#0e0e0e"/><circle cx="${W/2}" cy="${H/2-44}" r="10" fill="#d9b99b"/>`;
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">${b}</svg>`}
+$("#map").innerHTML=mapArt(v.s);$("#mn").textContent=v.n;$("#ma").textContent=v.areas[0]+" · المملكة العربية السعودية";
+$("#mlink").href="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(v.n+" "+v.areas[0]);
+// التقييمات
+$("#rsum").innerHTML=`<div class="big">${v.r}</div><div><span class="rate">${"★".repeat(Math.round(v.r))}${"☆".repeat(5-Math.round(v.r))}</span><p class="muted sm">بناءً على ${v.rv} تقييم</p></div>`;
+$("#revs").innerHTML=[["نورة ع.",5,"التزام تام بالموعد وجودة ممتازة، وفريق محترم جدًا."],["سعد م.",5,"أنصح به بشدة، التواصل سريع والتنفيذ أفضل مما توقعنا."],["ريم ح.",4,"عمل راقٍ وتفاصيل دقيقة، والتقسيط سهّل علينا الأمر."]].map(([n,s,t])=>`<div class="rev"><b>${n}</b><span class="rate">${"★".repeat(s)}${"☆".repeat(5-s)}</span><p>${t}</p></div>`).join("");
+// نموذج الحجز
+$("#bc2").innerHTML=v.areas.map(a=>`<option>${a}</option>`).join("");
+$("#bpk").innerHTML=v.pk.map((p,i)=>`<option value="${i}">${p.n}</option>`).join("");
+const d0=new Date();d0.setMonth(d0.getMonth()+2);$("#bd").min=new Date().toISOString().slice(0,10);$("#bd").value=d0.toISOString().slice(0,10);
+$("#go").onclick=()=>{$("#mt").textContent=`${v.n} · ${v.pk[$("#bpk").value].n} · ${$("#bd").value} · ${$("#bc2").value}. سيتواصل معك مزود الخدمة لتأكيد الحجز. (محاكاة)`;$("#modal").classList.add("show")};
+$("#mc").onclick=()=>$("#modal").classList.remove("show");
+// التوافر
+const MNm=["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"],p2=n=>String(n).padStart(2,"0");
+let ay=new Date().getFullYear(),am=new Date().getMonth();
+const isBooked=(y,m,d)=>{const wd=new Date(y,m,d).getDay();return((v.id*7+d*13+m*5+y)%5===0)||((wd===4||wd===5)&&((v.id+d+m)%3===0))};
+function renderAvail(){
+  $("#acm").textContent=MNm[am]+" "+ay;
+  const first=new Date(ay,am,1).getDay(),dim=new Date(ay,am+1,0).getDate(),t0=new Date();t0.setHours(0,0,0,0);
+  let o=["أحد","اثنين","ثلاثاء","أربعاء","خميس","جمعة","سبت"].map(d=>`<div class="wd">${d}</div>`).join("")+Array(first).fill('<div class="ad off"></div>').join("");
+  for(let d=1;d<=dim;d++){const k=`${ay}-${p2(am+1)}-${p2(d)}`,past=new Date(ay,am,d)<t0,bk=isBooked(ay,am,d);
+    o+=`<button type="button" class="ad ${past?"past":bk?"bk":"free"} ${$("#bd").value===k?"sel":""}" data-k="${k}" ${past||bk?"disabled":""}>${d}</button>`}
+  $("#acal").innerHTML=o;
+  $$("#acal .free").forEach(b=>b.onclick=()=>{$("#bd").value=b.dataset.k;renderAvail();$("#book").scrollIntoView({behavior:"smooth",block:"center"})});
+}
+$("#apm").onclick=()=>{am--;if(am<0){am=11;ay--}renderAvail()};$("#anm").onclick=()=>{am++;if(am>11){am=0;ay++}renderAvail()};
+$("#bd").addEventListener("input",renderAvail);renderAvail();
+// التبويبات
+const tio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)$$("#stabs a").forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id))}),{rootMargin:"-30% 0px -60% 0px"});
+["s-pk","s-works","s-loc","s-rev","s-avail","s-know"].forEach(s=>tio.observe(document.getElementById(s)));
+// مشابهون
+$("#sim").innerHTML=SVCS.filter(x=>x.id!==v.id&&(x.cat==v.cat||x.c==v.c)).slice(0,4).map(vCard).join("");
+</script></body></html>

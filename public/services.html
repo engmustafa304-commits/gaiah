@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><script src="lang.js"></script>
+<title>الخدمات | جيّة</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Lora:wght@400;500&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="luxury.css"></head>
+<body data-page="services">
+<div id="site-header"></div>
+<section class="page-head"><div class="wrap"><span class="eyebrow">الخدمات</span><h1>خدمات الزواج والمناسبات</h1><p class="muted">مزودو خدمات موثقون: تصوير وضيافة وكوش وترفيه — قارن الباقات واحجز لليلتك.</p></div></section>
+
+<section class="sec" style="padding-top:40px"><div class="wrap">
+  <div class="svc svc-t" id="tiles"></div>
+
+  <form class="pf svf" id="pf">
+    <div class="fg1"><label>ابحث</label><input id="q" placeholder="اسم المزود أو نوع الخدمة"></div>
+    <div class="fg1"><label>الوجهة</label><select id="city"><option value="">كل المدن</option></select></div>
+    <div class="fg1"><label>تاريخ المناسبة</label><input type="date" id="date"></div>
+    <div class="fg1"><label>التقييم</label><select id="rate"><option value="0">الكل</option><option value="4.5">4.5 فأعلى</option><option value="4.7">4.7 فأعلى</option></select></div>
+    <div class="fg1"><label>الترتيب</label><select id="sort"><option value="rec">موصى به</option><option value="rt">الأعلى تقييمًا</option><option value="rv">الأكثر مراجعات</option></select></div>
+    <button type="button" class="btn btn-line" id="rs" style="align-self:end;margin-bottom:16px">إعادة ضبط</button>
+  </form>
+  <p class="muted" id="count" style="margin:6px 0 10px"></p>
+  <div id="res"></div>
+
+  <div class="band" style="margin-top:70px"><div><h2>هل تقدّم خدمات للمناسبات؟</h2><p>انضم لجيّة واعرض باقاتك أمام آلاف العرسان، مع لوحة تحكم لإدارة الطلبات والتقويم والمدفوعات.</p><a class="btn btn-gold" href="login.html?t=provider">انضم كمزود خدمة</a></div></div>
+</div></section>
+<div id="site-footer"></div>
+<script src="data.js"></script><script src="art.js"></script><script src="store.js"></script><script src="common.js"></script><script src="i18n-en.js"></script><script src="i18n-en2.js"></script><script src="i18n-en3.js"></script><script src="i18n.js"></script><script src="/vendor/lenis.min.js"></script><script src="fx.js"></script>
+<script>
+const P=new URLSearchParams(location.search);let cat=P.get("cat")||"";
+CITIES.forEach(c=>$("#city").insertAdjacentHTML("beforeend",`<option>${c}</option>`));
+if(P.get("city"))$("#city").value=P.get("city");
+const tileSeed={"التصوير":21,"الضيافة والبوفيه":23,"تنسيق الورد والكوش":25,"التوزيعات والهدايا":27,"موسيقى وترفيه":29,"نقل الدبش":31};
+function tiles(){
+  $("#tiles").innerHTML=SVC_CATS.map(c=>`<a href="#" data-c="${c}" class="${cat==c?"on":""}">${art(tileSeed[c],300,345)}<span><b>${c}</b><small>${SVCS.filter(s=>s.cat==c).length} مزودين</small></span></a>`).join("");
+  $$("#tiles a").forEach(a=>a.onclick=e=>{e.preventDefault();cat=cat==a.dataset.c?"":a.dataset.c;run()});
+}
+// توافر تقريبي للمحاكاة حسب التاريخ
+const busy=(s,d)=>{const t=new Date(d),doy=Math.floor((t-new Date(t.getFullYear(),0,0))/864e5);return(s.id*11+doy)%6===0};
+function run(){
+  tiles();
+  const q=$("#q").value.trim(),c=$("#city").value,d=$("#date").value,rt=+$("#rate").value,so=$("#sort").value;
+  let l=SVCS.filter(s=>(!cat||s.cat==cat)&&(!q||ARmatch(s.n,q)||ARmatch(s.d,q)||ARmatch(s.cat,q))&&(!c||s.areas.includes(c))&&s.r>=rt&&(!d||!busy(s,d)));
+  if(so=="rt")l.sort((a,b)=>b.r-a.r);if(so=="rv")l.sort((a,b)=>b.rv-a.rv);
+  $("#count").textContent=`${l.length} مزود خدمة`;
+  if(!l.length){$("#res").innerHTML=`<div class="empty">لا توجد خدمات مطابقة، جرّب تغيير الفلاتر أو التاريخ.</div>`;return}
+  const cats=SVC_CATS.filter(x=>l.some(s=>s.cat==x));
+  $("#res").innerHTML=cats.map(x=>`<div class="grp"><h2 class="h3">${x}</h2><div class="grid">${l.filter(s=>s.cat==x).map(vCard).join("")}</div></div>`).join("");
+}
+$$("#pf input,#pf select").forEach(e=>e.addEventListener("input",run));
+$("#rs").onclick=()=>{$("#pf").reset();cat="";run()};
+run();
+</script></body></html>

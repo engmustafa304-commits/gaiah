@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><script src="lang.js"></script>
+<title>بكجات القاعات | جيّة</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Lora:wght@400;500&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="luxury.css"></head>
+<body data-page="pkg">
+<div id="site-header"></div>
+<section class="page-head"><div class="wrap"><span class="eyebrow">بكجات القاعات</span><h1>كل تفاصيل زفافك في بكج واحد</h1><p class="muted">اكتشف البكجات وقارن الخدمات المشمولة، ثم اختر تاريخ مناسبتك. التقسيط متاح على البكجات المؤهلة.</p></div></section>
+<section class="sec" style="padding-top:36px"><div class="wrap">
+  <form class="pf" id="pf">
+    <div class="fg1"><label>الوجهة</label><select id="city"><option value="">كل المدن</option></select></div>
+    <div class="fg1"><label>تاريخ المناسبة</label><input type="date" id="date"></div>
+    <div class="fg1"><label>عدد الضيوف (على الأقل)</label><select id="g"><option value="0">الكل</option><option value="100">100</option><option value="200">200</option><option value="300">300</option><option value="500">500</option></select></div>
+    <div class="fg1"><label>نوع البكج</label><select id="ch"><option value="">الكل</option><option value="1">مع كراسي</option><option value="0">بدون كراسي</option></select></div>
+    <div class="fg1"><label>القسم</label><select id="sec"><option value="">الكل</option></select></div>
+    <button type="button" class="btn btn-line" id="rs" style="align-self:end;margin-bottom:16px">إعادة ضبط</button>
+  </form>
+  <p class="muted" id="count" style="margin:6px 0 22px"></p>
+  <div class="grid" id="grid"></div>
+</div></section>
+<div id="site-footer"></div>
+<script src="data.js"></script><script src="art.js"></script><script src="store.js"></script><script src="common.js"></script><script src="i18n-en.js"></script><script src="i18n-en2.js"></script><script src="i18n-en3.js"></script><script src="i18n.js"></script><script src="/vendor/lenis.min.js"></script><script src="fx.js"></script>
+<script>
+CITIES.forEach(c=>$("#city").insertAdjacentHTML("beforeend",`<option>${c}</option>`));
+SEC_TYPES.forEach(c=>$("#sec").insertAdjacentHTML("beforeend",`<option>${c}</option>`));
+function run(){
+  const c=$("#city").value,d=$("#date").value,g=+$("#g").value,ch=$("#ch").value,s=$("#sec").value;
+  const l=PKGS.filter(p=>{const h=HALLS.find(x=>x.id===p.h);
+    return(!c||h.c==c)&&(!d||(d>=p.from&&d<=p.to))&&p.g>=g&&(ch===""||p.chairs===(ch==="1"))&&(!s||p.sec==s)});
+  $("#count").textContent=`${l.length} بكج`;
+  $("#grid").innerHTML=l.length?l.map(pkgCard).join(""):`<div class="empty">لا توجد بكجات مطابقة، جرّب تغيير الفلاتر أو التاريخ.</div>`;
+}
+$$("#pf select,#pf input").forEach(e=>e.addEventListener("input",run));
+$("#rs").onclick=()=>{$("#pf").reset();run()};
+run();
+</script></body></html>

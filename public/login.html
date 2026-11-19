@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><script src="lang.js"></script>
+<title>تسجيل الدخول | جيّة</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Lora:wght@400;500&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="luxury.css"></head>
+<body data-page="login">
+<div id="site-header"></div>
+<section class="auth">
+  <div class="auth-art"><div class="auth-bg" data-art="1" data-w="800" data-h="900"></div><div><img src="assets/logo-light.png" alt="" style="height:90px"><h2>ليلتك تبدأ من هنا</h2><p>سجّل لتحفظ حجوزاتك وعقودك وخدماتك في مكان واحد.</p></div></div>
+  <div class="auth-form">
+    <div class="seg" id="seg"><button class="on" data-t="groom">عريس / عروس</button><button data-t="provider">مزود خدمة</button><button data-t="admin">الإدارة</button></div>
+    <h1 id="ttl" class="serif" style="font-size:2.2rem;margin:26px 0 6px">تسجيل الدخول</h1>
+    <p class="muted" id="sub">أهلًا بعودتك، أدخل رقم جوالك للمتابعة.</p>
+    <div id="groomNote" class="todo" style="display:none;margin-top:22px"><div><span>لا تحتاج حسابًا للحجز: اختر القاعة وأرسل طلبك مباشرة من صفحتها.</span></div></div>
+    <form id="f" style="margin-top:24px">
+      <div class="fg1 nm" style="display:none"><label>الاسم الكامل</label><input id="fName" placeholder="الاسم" autocomplete="name"></div>
+      <div class="fg1 pv" style="display:none"><label>اسم المنشأة</label><input id="fBiz" placeholder="اسم النشاط التجاري"></div>
+      <div class="fg1"><label id="lId">رقم الجوال</label><input id="fId" inputmode="tel" placeholder="05xxxxxxxx" dir="ltr" style="text-align:right" autocomplete="username"></div>
+      <div class="fg1"><label>كلمة المرور</label><input id="fPw" type="password" dir="ltr" style="text-align:right" autocomplete="current-password"></div>
+      <button class="btn btn-ink" style="width:100%;justify-content:center;margin-top:8px" id="sb">دخول</button>
+    </form>
+    <p class="muted sm" style="margin-top:18px"><span id="sw">ليس لديك حساب؟</span> <button class="link" id="tg">إنشاء حساب</button></p>
+    <p class="muted sm" id="ok" style="color:var(--gold-3)"></p>
+  </div>
+</section>
+<div id="site-footer"></div>
+<script src="data.js"></script><script src="art.js"></script><script src="store.js"></script><script src="common.js"></script><script src="i18n-en.js"></script><script src="i18n-en2.js"></script><script src="i18n-en3.js"></script><script src="i18n.js"></script><script src="/vendor/lenis.min.js"></script><script src="fx.js"></script>
+<script>
+const qt=new URLSearchParams(location.search).get("t");
+let kind=(qt==="provider"||qt==="admin")?qt:"groom",reg=false;
+const post=(u,b)=>fetch(u,{method:"POST",headers:{"Content-Type":"application/json","X-Requested-With":"gaiah"},body:JSON.stringify(b)}).then(r=>r.json());
+function ui(){
+  $$("#seg button").forEach(b=>b.classList.toggle("on",b.dataset.t==kind));
+  const g=kind=="groom";
+  $("#ttl").textContent=kind=="admin"?"دخول الإدارة":(reg?(kind=="provider"?"انضم كمزود خدمة":"إنشاء حساب جديد"):"تسجيل الدخول");
+  $("#sub").textContent=kind=="admin"?"لوحة إدارة المنصة — للمصرّح لهم فقط.":(kind=="provider"?"اعرض خدماتك أمام آلاف العرسان وأدر حجوزاتك بسهولة.":"أهلًا بك في جيّة.");
+  $("#groomNote").style.display=g?"":"none";$("#f").style.display=g?"none":"";
+  $$(".nm").forEach(e=>e.style.display=reg&&kind=="provider"?"":"none");$$(".pv").forEach(e=>e.style.display=reg&&kind=="provider"?"":"none");
+  $("#lId").textContent=kind=="admin"?"البريد الإلكتروني":"رقم الجوال";$("#fId").placeholder=kind=="admin"?"admin@example.com":"05xxxxxxxx";
+  $("#fId").inputMode=kind=="admin"?"email":"tel";
+  $("#fPw").autocomplete=reg?"new-password":"current-password";
+  $("#sb").textContent=reg&&kind=="provider"?"إنشاء الحساب":"دخول";$("#sw").textContent=reg?"لديك حساب؟":"ليس لديك حساب؟";$("#tg").textContent=reg?"تسجيل الدخول":"إنشاء حساب";
+  $("#tg").parentElement.style.display=kind=="provider"?"":"none";$("#ok").textContent="";
+}
+$$("#seg button").forEach(b=>b.onclick=()=>{kind=b.dataset.t;reg=false;ui()});
+$("#tg").onclick=()=>{reg=!reg;ui()};
+$("#f").onsubmit=async e=>{e.preventDefault();
+  const id=$("#fId").value.trim(),pw=$("#fPw").value,msg=$("#ok"),btn=$("#sb");
+  msg.style.color="var(--gold-3)";btn.disabled=true;
+  try{
+    if(reg&&kind=="provider"){
+      const r=await post("/api/auth/register-provider",{name:$("#fBiz").value,owner:$("#fName").value,phone:id,password:pw});
+      msg.style.color=r.ok?"var(--gold-3)":"#a03c2e";
+      msg.textContent=r.ok?"تم استلام طلبك ✓ ستراجعه الإدارة وتوثّق حسابك قريبًا.":r.error;
+      if(r.ok){reg=false;setTimeout(ui,3500)}
+    }else{
+      const r=await post("/api/auth/login",{role:kind,login:id,password:pw});
+      if(r.ok){location.href=withLang(kind=="admin"?"admin.html":"provider.html");return}
+      msg.style.color="#a03c2e";msg.textContent=r.error||"تعذّر تسجيل الدخول";
+    }
+  }catch(er){msg.style.color="#a03c2e";msg.textContent="تعذّر الاتصال بالخادم"}
+  btn.disabled=false;
+};
+ui();
+</script></body></html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><script src="lang.js"></script>
+<title>السحوبات | جيّة</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Lora:wght@400;500&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="luxury.css"></head>
+<body data-page="gv">
+<div id="site-header"></div>
+<section class="page-head"><div class="wrap"><span class="eyebrow">السحوبات</span><h1>سحوبات جيّة</h1><p class="muted">اكتشف الجوائز، شارك مجانًا، واطّلع على الفائزين السابقين.</p></div></section>
+
+<section class="sec" style="padding-top:44px"><div class="wrap">
+  <article class="gv rv">
+    <div class="gv-art" data-art="3" data-w="720" data-h="760"></div>
+    <div class="gv-b">
+      <span class="tag">المشاركة مفتوحة</span>
+      <h2>اربح تصوير حفلك مجانًا 🎉</h2>
+      <p class="muted">شارك في سحب جيّة واحصل على فرصة للفوز بتغطية تصوير فوتوغرافي كاملة لحفل زفافك من أحد مزودي الخدمة الموثقين.</p>
+      <div class="gv-prize"><i>✦</i><div><b>الجائزة</b><span>تغطية تصوير فوتوغرافي كاملة للحفل (حتى 5 ساعات)</span></div></div>
+      <div class="gv-dates">
+        <div><span>بداية المشاركة</span><b>01 نوفمبر 2026</b></div>
+        <div><span>آخر موعد للمشاركة</span><b>30 نوفمبر 2026</b></div>
+        <div><span>موعد اختيار الفائز</span><b>01 ديسمبر 2026</b></div>
+      </div>
+      <div class="cd" id="cd"><div><b id="cd-d">00</b><span>يوم</span></div><div><b id="cd-h">00</b><span>ساعة</span></div><div><b id="cd-m">00</b><span>دقيقة</span></div><div><b id="cd-s">00</b><span>ثانية</span></div></div>
+      <form id="jf" class="jf">
+        <div class="fg1"><label>رقم الجوال</label><input id="jp" inputmode="tel" placeholder="05xxxxxxxx" dir="ltr" style="text-align:right" required></div>
+        <label class="check"><input type="checkbox" id="ja" required> أوافق على شروط السحب</label>
+        <button class="btn btn-gold" type="submit" id="jb">شارك الآن</button>
+        <p class="muted sm" id="jm"></p>
+      </form>
+      <details class="terms"><summary>الشروط والأحكام</summary>
+        <ul><li>المشاركة مجانية ولا تتطلب أي دفع.</li><li>يحق لكل رقم جوال المشاركة مرة واحدة فقط في كل سحب.</li><li>يتم اختيار الفائز عشوائيًا ويُعلن في هذه الصفحة وعبر رسالة نصية.</li><li>الجائزة غير قابلة للاستبدال النقدي، وتُستخدم خلال 6 أشهر من الإعلان.</li><li>تحتفظ جيّة بحق تعديل شروط السحب (نص تجريبي).</li></ul></details>
+    </div>
+  </article>
+
+  <div class="sec-head rv" style="margin-top:80px"><div><span class="eyebrow">السحوبات السابقة</span><h2>الفائزون السابقون</h2></div></div>
+  <div class="grid" id="past"></div>
+</div></section>
+<div id="site-footer"></div>
+<script src="data.js"></script><script src="art.js"></script><script src="store.js"></script><script src="common.js"></script><script src="i18n-en.js"></script><script src="i18n-en2.js"></script><script src="i18n-en3.js"></script><script src="i18n.js"></script><script src="/vendor/lenis.min.js"></script><script src="fx.js"></script>
+<script>
+// عدّاد تنازلي إلى آخر موعد (30 نوفمبر 2026)
+const end=new Date("2026-11-30T23:59:00").getTime(),p2=n=>String(n).padStart(2,"0");
+function tick(){let d=Math.max(0,end-Date.now());const D=Math.floor(d/864e5);d%=864e5;const H=Math.floor(d/36e5);d%=36e5;const M=Math.floor(d/6e4),S=Math.floor(d%6e4/1e3);
+  $("#cd-d").textContent=p2(D);$("#cd-h").textContent=p2(H);$("#cd-m").textContent=p2(M);$("#cd-s").textContent=p2(S)}
+tick();setInterval(tick,1000);
+// المشاركة (محاكاة)
+let joined=false;try{joined=!!localStorage.getItem("gv1")}catch(e){}
+function paint(){if(joined){$("#jb").disabled=true;$("#jb").textContent="تمت مشاركتك ✓";$("#jm").textContent="بالتوفيق! سنعلن الفائز في 01 ديسمبر 2026."}}
+paint();
+$("#jf").onsubmit=e=>{e.preventDefault();if(!/^05\d{8}$/.test($("#jp").value.trim())){$("#jm").textContent="أدخل رقم جوال سعودي صحيح يبدأ بـ 05.";return}
+  joined=true;try{localStorage.setItem("gv1","1")}catch(e){}paint()};
+// السحوبات السابقة
+const PAST=[["تنسيق كوشة وورد لحفلك","أكتوبر 2026","ن*** ع.",25],["بوفيه ضيافة لـ 100 ضيف","سبتمبر 2026","م*** ق.",23],["جلسة تصوير ما قبل الزفاف","أغسطس 2026","ر*** ح.",21]];
+$("#past").innerHTML=PAST.map(([p,d,w,s])=>`<article class="card"><div class="ph" style="aspect-ratio:16/10">${art(s)}<span class="badge">انتهت المشاركة</span></div><div class="cb"><h3>${p}</h3><p class="muted sm">${d}</p><div class="cf"><span>🏆 الفائز: ${w}</span><span></span></div></div></article>`).join("");
+</script></body></html>

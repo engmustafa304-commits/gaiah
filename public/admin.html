@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><script src="lang.js"></script>
+<title>لوحة الإدارة | جيّة</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Lora:wght@400;500&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="luxury.css"><link rel="stylesheet" href="dash.css"></head>
+<body class="dash admin" data-page="admin">
+<div class="app">
+  <aside class="side" id="side">
+    <img class="lg" src="assets/logo-light.png" alt="جيّة">
+    <div class="role">لوحة الإدارة</div>
+    <button class="nv on" data-t="ov"><i>▦</i>نظرة عامة</button>
+    <button class="nv" data-t="ap"><i>✔</i>طلبات المراجعة<b id="nAp" style="display:none"></b></button>
+    <button class="nv" data-t="vn"><i>⌂</i>القاعات</button>
+    <button class="nv" data-t="pv"><i>👤</i>المزودون<b id="nPv" style="display:none"></b></button>
+    <button class="nv" data-t="bk"><i>✎</i>الحجوزات</button>
+    <button class="nv" data-t="us"><i>♡</i>العرسان</button>
+    <button class="nv" data-t="rv"><i>★</i>التقييمات</button>
+    <button class="nv" data-t="gv"><i>🎁</i>السحوبات</button>
+    <div class="sep"></div>
+    <button class="nv" data-t="lg"><i>⏱</i>سجل النشاط</button>
+    <button class="nv" data-t="st"><i>⚙</i>الإعدادات</button>
+    <div class="me"><div class="av">م</div><div><span>مدير النظام</span><small>admin@gaiah.example</small></div></div>
+  </aside>
+  <main class="main">
+    <div class="dtop">
+      <div style="display:flex;gap:12px;align-items:center"><button class="menu-b" id="mb">☰</button><div><h1 id="ttl">نظرة عامة</h1></div></div>
+      <div class="act">
+        <button class="btn btn-line" data-langbtn data-notr style="padding:9px 18px">English</button>
+        <button class="bell" id="bell" aria-label="الإشعارات">🔔<b id="bellN" style="display:none"></b></button>
+        <a class="btn btn-line" href="index.html" style="padding:9px 20px">عرض الموقع</a>
+        <button class="btn btn-ink" data-logout style="padding:9px 20px">تسجيل الخروج</button>
+      </div>
+    </div>
+
+    <!-- نظرة عامة -->
+    <section class="tab on" id="t-ov">
+      <div class="kpis" id="kOv"></div>
+      <div class="row2">
+        <div class="box"><h3>الحجوزات خلال 6 أشهر</h3><div id="chOv"></div></div>
+        <div class="box"><h3>حالة الحجوزات</h3><div id="dnOv"></div></div>
+      </div>
+      <div class="row2">
+        <div class="box"><h3>القاعات المنشورة حسب المدينة</h3><div id="byCity"></div></div>
+        <div class="box"><h3>تحتاج مراجعتك</h3><div class="todo" id="todo"></div></div>
+      </div>
+      <div class="row2">
+        <div class="box"><h3>أفضل القاعات أداءً</h3><div class="scroll"><table class="tbl" id="tTop"></table></div></div>
+        <div class="box"><h3>آخر النشاط <a href="#" data-go="lg">عرض الكل</a></h3><ul class="act-l" id="actOv"></ul></div>
+      </div>
+    </section>
+
+    <!-- طلبات المراجعة -->
+    <section class="tab" id="t-ap">
+      <div class="box" style="margin-bottom:18px"><h3>قاعات بانتظار الاعتماد</h3><div class="scroll"><table class="tbl" id="tApV"></table></div></div>
+      <div class="box"><h3>مزودون بانتظار التوثيق</h3><div class="scroll"><table class="tbl" id="tApP"></table></div></div>
+    </section>
+
+    <!-- القاعات -->
+    <section class="tab" id="t-vn">
+      <div class="fbar"><input class="grow" id="vQ" placeholder="ابحث باسم القاعة أو المزود"><select id="vS"></select><select id="vC"></select><select id="vP"></select><button class="btn btn-line" id="vCsv" style="padding:8px 18px">تصدير CSV</button></div>
+      <div class="box"><div class="scroll"><table class="tbl" id="tVn"></table></div></div>
+    </section>
+
+    <!-- المزودون -->
+    <section class="tab" id="t-pv">
+      <div class="fbar"><input class="grow" id="pQ" placeholder="ابحث باسم المنشأة أو المسؤول"><select id="pS"></select></div>
+      <div class="box"><div class="scroll"><table class="tbl" id="tPv"></table></div></div>
+    </section>
+
+    <!-- الحجوزات -->
+    <section class="tab" id="t-bk">
+      <div class="fbar"><input class="grow" id="bQ" placeholder="ابحث باسم العميل أو رقم الحجز"><select id="bV"></select><input type="date" id="bFrom" title="من تاريخ"><input type="date" id="bTo" title="إلى تاريخ"><button class="btn btn-line" id="bCsv" style="padding:8px 18px">تصدير CSV</button></div>
+      <div class="chipbar" id="bF"></div>
+      <div class="box"><div class="scroll"><table class="tbl" id="tBk"></table></div></div>
+    </section>
+
+    <!-- العرسان -->
+    <section class="tab" id="t-us">
+      <div class="fbar"><input class="grow" id="uQ" placeholder="ابحث بالاسم أو رقم الجوال"><select id="uC"></select></div>
+      <div class="box"><div class="scroll"><table class="tbl" id="tUs"></table></div></div>
+    </section>
+
+    <!-- التقييمات -->
+    <section class="tab" id="t-rv">
+      <div class="chipbar" id="rF"></div>
+      <div class="box"><div id="rvl"></div></div>
+    </section>
+
+    <!-- السحوبات -->
+    <section class="tab" id="t-gv">
+      <div class="fbar"><button class="btn btn-gold" id="gvNew" style="padding:9px 22px">+ سحب جديد</button></div>
+      <div class="vgrid" id="gvGrid"></div>
+    </section>
+
+    <!-- سجل النشاط -->
+    <section class="tab" id="t-lg">
+      <div class="box"><ul class="act-l" id="actAll"></ul></div>
+    </section>
+
+    <!-- الإعدادات -->
+    <section class="tab" id="t-st">
+      <div class="row2">
+        <div class="box"><h3>إعدادات المنصة</h3>
+          <form id="sf"><div class="fgrid">
+            <div class="fg1"><label>عمولة المنصة (%)</label><input type="number" id="sCom" min="0" max="50" step="0.5"></div>
+            <div class="fg1"><label>أقصى عدد للقاعات المميزة</label><input type="number" id="sFeat" min="0" max="30"></div>
+            <div class="fg1 full"><label>نص الشريط الإعلاني (أعلى الموقع)</label><input id="sAnn" maxlength="120"></div>
+          </div>
+          <div class="setl" style="margin-bottom:14px">
+            <div><span>الاعتماد التلقائي للقاعات<small>نشر القاعات الجديدة دون مراجعة</small></span><button type="button" class="tg" id="sAuto" aria-label="تبديل"></button></div>
+            <div><span>وضع الصيانة<small>إظهار إشعار صيانة في الموقع (تجريبي)</small></span><button type="button" class="tg" id="sMnt" aria-label="تبديل"></button></div>
+          </div>
+          <button class="btn btn-gold" type="submit" style="padding:10px 26px">حفظ الإعدادات</button></form></div>
+        <div class="box"><h3>المدن المتاحة</h3>
+          <div class="pills" id="cityL" style="margin-bottom:12px"></div>
+          <div class="fbar"><input class="grow" id="cityN" placeholder="أضف مدينة جديدة"><button class="btn btn-line" id="cityA" style="padding:8px 18px">إضافة</button></div>
+          <h3 style="margin-top:22px">البيانات</h3>
+          <div class="setl"><div><span>تصدير كل البيانات<small>ملف JSON بكامل قاعدة التجربة</small></span><button class="mini" id="expAll">تصدير</button></div>
+          <div><span>إعادة ضبط بيانات التجربة<small>تعيد القاعات والحجوزات إلى وضعها الأصلي</small></span><button class="mini dng" id="rstDb">إعادة ضبط</button></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+<div id="site-footer" style="display:none"></div>
+<script src="data.js"></script><script src="art.js"></script><script src="common.js"></script><script src="store.js"></script>
+<script src="i18n-en.js"></script><script src="i18n-en2.js"></script><script src="i18n-en3.js"></script><script src="i18n.js"></script>
+<script src="dash.js"></script><script src="admin.js"></script>
+</body></html>

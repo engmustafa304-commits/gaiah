@@ -1,0 +1,22 @@
+{
+    "name":  "gaiah",
+    "version":  "0.2.0",
+    "private":  true,
+    "description":  "منصة جيّة لحجز قاعات الزفاف وخدمات المناسبات",
+    "main":  "server/index.js",
+    "scripts":  {
+                    "dev":  "node --watch --env-file-if-exists=.env server/index.js",
+                    "start":  "node --env-file-if-exists=.env server/index.js",
+                    "test":  "node --test test/",
+                    "seed:reset":  "node --env-file-if-exists=.env server/reset.js"
+                },
+    "engines":  {
+                    "node":  "\u003e=22.5"
+                },
+    "license":  "UNLICENSED",
+    "dependencies":  {
+                         "express":  "^4.22.3",
+                         "helmet":  "^7.2.0",
+                         "lenis":  "^1.1.18"
+                     }
+}

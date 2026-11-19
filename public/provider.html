@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><script src="lang.js"></script>
+<title>لوحة المزود | جيّة</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Lora:wght@400;500&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="luxury.css"><link rel="stylesheet" href="dash.css"></head>
+<body class="dash" data-page="provider">
+<div class="app">
+  <aside class="side" id="side">
+    <img class="lg" src="assets/logo-light.png" alt="جيّة">
+    <div class="role">لوحة المزود</div>
+    <button class="nv on" data-t="ov"><i>▦</i>نظرة عامة</button>
+    <button class="nv" data-t="vn"><i>⌂</i>قاعاتي<b id="nVn" style="display:none"></b></button>
+    <button class="nv" data-t="bk"><i>✎</i>الحجوزات<b id="nBk" style="display:none"></b></button>
+    <button class="nv" data-t="cal"><i>▤</i>التقويم</button>
+    <button class="nv" data-t="pay"><i>﷼</i>المدفوعات</button>
+    <button class="nv" data-t="rv"><i>★</i>التقييمات</button>
+    <div class="sep"></div>
+    <button class="nv" data-t="st"><i>⚙</i>الإعدادات</button>
+    <div class="me"><div class="av" id="meAv">ق</div><div><span id="meName"></span><small>مزود موثق ✓</small></div></div>
+  </aside>
+  <main class="main">
+    <div class="dtop">
+      <div style="display:flex;gap:12px;align-items:center"><button class="menu-b" id="mb">☰</button><div><h1 id="ttl">نظرة عامة</h1></div></div>
+      <div class="act">
+        <button class="btn btn-line" data-langbtn data-notr style="padding:9px 18px">English</button>
+        <button class="bell" id="bell" aria-label="الإشعارات">🔔<b id="bellN" style="display:none"></b></button>
+        <a class="btn btn-line" href="index.html" style="padding:9px 20px">عرض الموقع</a>
+        <button class="btn btn-gold" id="addBtn" style="padding:9px 22px">+ إضافة قاعة</button>
+      </div>
+    </div>
+
+    <!-- نظرة عامة -->
+    <section class="tab on" id="t-ov">
+      <div class="kpis" id="kOv"></div>
+      <div class="row2">
+        <div class="box"><h3>الحجوزات خلال 6 أشهر</h3><div id="chOv"></div></div>
+        <div class="box"><h3>الحجوزات حسب القاعة</h3><div id="byVenue"></div></div>
+      </div>
+      <div class="row2">
+        <div class="box"><h3>أحدث الحجوزات <a href="#" data-go="bk">عرض الكل</a></h3><div class="scroll"><table class="tbl" id="tRecent"></table></div></div>
+        <div class="box"><h3>مهام تحتاج إجراء</h3><div class="todo" id="todo"></div></div>
+      </div>
+      <div class="box"><h3>أداء القاعات <a href="#" data-go="vn">إدارة القاعات</a></h3><div class="scroll"><table class="tbl" id="tPerf"></table></div></div>
+    </section>
+
+    <!-- قاعاتي -->
+    <section class="tab" id="t-vn">
+      <div class="chipbar" id="vFilter"></div>
+      <div class="vgrid" id="vGrid"></div>
+    </section>
+
+    <!-- محرر القاعة -->
+    <section class="tab" id="t-ed">
+      <div class="ed-head">
+        <div><button class="mini" id="edBack">→ رجوع إلى قاعاتي</button> <span id="edStatus"></span></div>
+        <div class="meter-w"><span>اكتمال البيانات</span><div class="meter"><i id="edMeter" style="width:0"></i></div><b id="edPct">0%</b></div>
+      </div>
+      <div class="box">
+        <div class="ed-tabs" id="edTabs"></div>
+        <div id="edBody"></div>
+        <div class="ft-bar" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;border-top:1px solid var(--line);padding-top:16px">
+          <button class="btn btn-gold" id="edSubmit" style="padding:10px 26px">إرسال للمراجعة</button>
+          <button class="btn btn-line" id="edDraft" style="padding:10px 22px">حفظ كمسودة</button>
+          <span class="hint" id="edMsg" style="margin:auto 0"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- الحجوزات -->
+    <section class="tab" id="t-bk">
+      <div class="fbar">
+        <input class="grow" id="bkQ" placeholder="ابحث باسم العميل أو رقم الحجز">
+        <select id="bkV"></select>
+        <input type="date" id="bkFrom" title="من تاريخ"><input type="date" id="bkTo" title="إلى تاريخ">
+        <button class="btn btn-line" id="bkCsv" style="padding:8px 18px">تصدير CSV</button>
+        <button class="btn btn-ink" id="bkAdd" style="padding:8px 18px">+ حجز يدوي</button>
+      </div>
+      <div class="chipbar" id="bkF"></div>
+      <div class="box"><div class="scroll"><table class="tbl" id="tBk"></table></div></div>
+    </section>
+
+    <!-- التقويم -->
+    <section class="tab" id="t-cal">
+      <div class="fbar"><select class="sw-sel" id="calV"></select><span class="hint" style="margin:0">اضغط على يوم متاح لحظره، أو على يوم محظور لفتحه، أو على حجز لعرض تفاصيله.</span></div>
+      <div class="box"><div class="cal-h"><button class="btn btn-line" id="cPrev" style="padding:6px 16px">›</button><h3 id="cTitle"></h3><button class="btn btn-line" id="cNext" style="padding:6px 16px">‹</button></div>
+        <div class="cal" id="calG"></div>
+        <div class="leg"><span><i style="background:var(--ink)"></i>محجوز</span><span><i style="background:#f3e7d2;border:1px solid var(--gold-2)"></i>طلب معلّق</span><span><i style="background:#e6e1d4"></i>محظور</span><span><i style="background:#fff;border:1px solid var(--line)"></i>متاح</span></div></div>
+    </section>
+
+    <!-- المدفوعات -->
+    <section class="tab" id="t-pay">
+      <div class="pay3" id="kPay"></div>
+      <div class="box"><h3>سجل المعاملات <button class="btn btn-ink" style="padding:7px 18px;font-size:.85rem" id="wd">طلب سحب</button></h3><div class="scroll"><table class="tbl" id="tPay"></table></div></div>
+    </section>
+
+    <!-- التقييمات -->
+    <section class="tab" id="t-rv">
+      <div class="row2"><div class="box"><h3>تقييمات العملاء</h3><div class="fbar"><select id="rvV"></select></div><div id="rvl"></div></div>
+        <div class="box"><h3>توزيع النجوم</h3><div id="rvb"></div></div></div>
+    </section>
+
+    <!-- الإعدادات -->
+    <section class="tab" id="t-st">
+      <div class="row2">
+        <div class="box"><h3>بيانات المنشأة</h3>
+          <form id="pf"><div class="fgrid">
+            <div class="fg1"><label>اسم المنشأة</label><input id="pName" required></div>
+            <div class="fg1"><label>اسم المسؤول</label><input id="pOwner"></div>
+            <div class="fg1"><label>رقم الجوال</label><input id="pPhone" dir="ltr" style="text-align:right"></div>
+            <div class="fg1"><label>البريد الإلكتروني</label><input id="pEmail" dir="ltr" style="text-align:right"></div>
+            <div class="fg1"><label>المدينة</label><select id="pCity"></select></div>
+            <div class="fg1"><label>السجل التجاري</label><input id="pCr" dir="ltr" style="text-align:right"></div>
+          </div><button class="btn btn-gold" type="submit" style="padding:10px 26px">حفظ التغييرات</button></form></div>
+        <div class="box"><h3>الإشعارات والحساب</h3>
+          <div class="setl" id="setl"></div></div>
+      </div>
+    </section>
+  </main>
+</div>
+<div id="site-footer" style="display:none"></div>
+<script src="data.js"></script><script src="art.js"></script><script src="common.js"></script><script src="store.js"></script>
+<script src="i18n-en.js"></script><script src="i18n-en2.js"></script><script src="i18n-en3.js"></script><script src="i18n.js"></script>
+<script src="dash.js"></script><script src="provider.js"></script>
+</body></html>

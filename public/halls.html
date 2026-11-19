@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><script src="lang.js"></script>
+<title>القاعات | جيّة</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Lora:wght@400;500&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="luxury.css"></head>
+<body data-page="halls">
+<div id="site-header"></div>
+<section class="page-head"><div class="wrap"><span class="eyebrow">القاعات</span><h1>اعثر على قاعة ليلتك</h1><p id="count" class="muted"></p></div></section>
+<section class="sec" style="padding-top:36px"><div class="wrap listing">
+  <aside class="filters" id="filters">
+    <div class="fh"><h3>تصفية النتائج</h3><button class="link" id="reset">إعادة ضبط</button></div>
+    <div class="fg1"><label>اسم القاعة</label><input id="q" placeholder="ابحث..."></div>
+    <div class="fg1"><label>المدينة</label><select id="city"><option value="">كل المدن</option></select></div>
+    <div class="fg1"><label>نوع القاعة</label><div id="types" class="checks"></div></div>
+    <div class="fg1"><label>السعة (عدد الضيوف) من: <b id="capv"></b></label><input type="range" id="cap" min="0" max="900" step="50" value="0"></div>
+    <label class="check"><input type="checkbox" id="inst"> متاح بالتقسيط</label>
+  </aside>
+  <div>
+    <div class="toolbar"><button class="btn btn-line only-m" id="fbtn">تصفية</button>
+      <select id="sort"><option value="rec">الأنسب</option><option value="rt">الأعلى تقييمًا</option><option value="cp">الأكبر سعة</option></select></div>
+    <div class="grid" id="grid"></div>
+  </div>
+</div></section>
+<div id="site-footer"></div>
+<script src="data.js"></script><script src="art.js"></script><script src="store.js"></script><script src="common.js"></script><script src="i18n-en.js"></script><script src="i18n-en2.js"></script><script src="i18n-en3.js"></script><script src="i18n.js"></script><script src="/vendor/lenis.min.js"></script><script src="fx.js"></script>
+<script>
+const P=new URLSearchParams(location.search);
+CITIES.forEach(c=>$("#city").insertAdjacentHTML("beforeend",`<option>${c}</option>`));
+$("#types").innerHTML=TYPES.map(t=>`<label class="check"><input type="checkbox" value="${t}"> ${t}</label>`).join("");
+$("#q").value=P.get("q")||"";$("#city").value=P.get("city")||"";
+if(P.get("type"))$$("#types input").forEach(i=>i.checked=i.value==P.get("type"));
+function run(){
+  const q=$("#q").value.trim(),c=$("#city").value,ts=$$("#types input:checked").map(i=>i.value),cp=+$("#cap").value;
+  $("#capv").textContent=cp;
+  let l=HALLS.filter(h=>ARmatch(h.n,q)&&(!c||h.c==c)&&(!ts.length||ts.includes(h.t))&&h.cap>=cp&&(!$("#inst").checked||h.i));
+  const s=$("#sort").value;
+  if(s=="rt")l.sort((a,b)=>b.r-a.r);if(s=="cp")l.sort((a,b)=>b.cap-a.cap);
+  $("#count").textContent=`${l.length} قاعة متاحة`;
+  $("#grid").innerHTML=l.length?l.map(hallCard).join(""):`<div class="empty">لا توجد قاعات مطابقة، جرّب توسيع الفلاتر.</div>`;
+}
+$$("#filters input,#filters select,#sort").forEach(e=>e.addEventListener("input",run));
+$("#reset").onclick=()=>{$("#q").value="";$("#city").value="";$$("#filters input[type=checkbox]").forEach(i=>i.checked=false);$("#cap").value=0;run()};
+$("#fbtn").onclick=()=>$("#filters").classList.toggle("open");
+run();
+</script></body></html>
