@@ -50,5 +50,15 @@ function render(){
   $("#fl").innerHTML=Q.filter(q=>cat=="الكل"||q[0]==cat).map(q=>`<details><summary>${q[1]}</summary><p>${q[2]}</p></details>`).join("");
 }
 render();
-$("#cf").onsubmit=e=>{e.preventDefault();$("#cm").textContent="تم استلام طلبك ✓ (محاكاة: لا يوجد خادم بعد). سنتواصل معك قريبًا."; e.target.reset()};
+$("#cf").onsubmit=async e=>{
+  e.preventDefault();const f=e.target,m=$("#cm"),btn=f.querySelector("button");
+  const [n,p]=f.querySelectorAll("input"),t=f.querySelector("select"),msg=f.querySelector("textarea");
+  btn.disabled=true;m.textContent="";
+  try{
+    const r=await fetch("/api/contact",{method:"POST",headers:{"Content-Type":"application/json","X-Requested-With":"gaiah"},body:JSON.stringify({name:n.value,phone:p.value.trim(),topic:t.value,message:msg.value})});
+    const j=await r.json();
+    if(j.ok){m.textContent="تم استلام طلبك ✓ سنتواصل معك قريبًا.";f.reset()}else m.textContent=j.error||"تعذّر الإرسال";
+  }catch(_){m.textContent="تعذّر الاتصال بالخادم، حاول مرة أخرى"}
+  btn.disabled=false;
+};
 </script></body></html>

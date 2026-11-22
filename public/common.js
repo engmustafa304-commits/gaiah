@@ -12,8 +12,8 @@ function siteChrome(){
   <nav class="menu" id="menu">${NAV.map(([h,t,k])=>`<a class="${k===page?"on":""}" href="${h}">${t}</a>`).join("")}</nav>
   <div class="nav-actions"><button class="lang" data-langbtn data-notr>English</button><a class="btn btn-line" href="login.html?t=provider">انضم كمزود خدمة</a><a class="btn btn-ink" href="login.html">تسجيل الدخول</a><button class="burger" id="burger" aria-label="القائمة">☰</button></div></div></header>`;
   $("#site-footer").innerHTML=`<footer><div class="wrap"><div class="fg"><div><img src="assets/logo-light.png" alt="جيّة Gaiah"><p>منصة حجز القاعات وخدمات المناسبات الفاخرة في المملكة.</p></div>
-  <div><h4>المنصة</h4><a href="halls.html">القاعات</a><a href="services.html">الخدمات</a><a href="packages.html">بكجات القاعات</a><a href="giveaways.html">السحوبات</a></div>
-  <div><h4>الدعم</h4><a href="support.html#faq">الأسئلة الشائعة</a><a href="support.html#contact">تواصل معنا</a><a href="#">الشروط والأحكام</a><a href="#">الخصوصية</a></div>
+  <div><h4>المنصة</h4><a href="halls.html">القاعات</a><a href="services.html">الخدمات</a><a href="packages.html">بكجات القاعات</a><a href="giveaways.html">السحوبات</a><a href="venue-management-system.html">نظام إدارة القاعات</a></div>
+  <div><h4>الدعم</h4><a href="support.html#faq">الأسئلة الشائعة</a><a href="support.html#contact">تواصل معنا</a><a href="terms.html">الشروط والأحكام</a><a href="privacy.html">الخصوصية</a><a href="account-deletion.html">حذف الحساب</a></div>
   <div><h4>تواصل</h4><a href="#">info@example.com</a><a href="#">واتساب</a><a href="#">إنستغرام</a><a href="#">إكس</a></div></div>
   <div class="copy"><span>© 2026 جيّة Gaiah. جميع الحقوق محفوظة.</span><span>المحتوى والصور الظاهرة تجريبية</span></div></div></footer>
   <a class="wa" href="#" aria-label="واتساب"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.6c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.6.3.1.1.1.7-.1 1.3z"/></svg></a>`;

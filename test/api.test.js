@@ -125,6 +125,25 @@ test("الحجز العام: التحقق من المدخلات", async () => {
   assert.equal((await call("POST", "/api/bookings", { body: { ...base_, vid: 9999 } })).status, 404);
 });
 
+test("التواصل: رسالة عامة تصل للإدارة فقط وتُعالج وتُحذف", async () => {
+  const m = { name: "سارة العتيبي", phone: "0509998877", topic: "أخرى", message: "أرغب بالاستفسار" };
+  assert.equal((await call("POST", "/api/contact", { body: { ...m, phone: "123" } })).status, 400);
+  assert.equal((await call("POST", "/api/contact", { body: { ...m, message: "" } })).status, 400);
+  assert.equal((await call("POST", "/api/contact", { body: m, noCsrf: true })).status, 403);
+  assert.equal((await call("POST", "/api/contact", { body: m })).status, 200);
+  assert.equal((await call("GET", "/api/admin/inquiries")).status, 401);
+  const p = await loginProvider();
+  assert.equal((await call("GET", "/api/admin/inquiries", { cookie: p.cookie })).status, 401);
+  const a = await loginAdmin();
+  const list = await call("GET", "/api/admin/inquiries", { cookie: a.cookie });
+  const it = list.json.items.find((x) => x.message === m.message);
+  assert.ok(it && it.done === 0);
+  await call("POST", `/api/admin/inquiries/${it.id}/done`, { cookie: a.cookie, body: { done: true } });
+  assert.equal((await call("GET", "/api/admin/inquiries", { cookie: a.cookie })).json.items.find((x) => x.id === it.id).done, 1);
+  await call("DELETE", `/api/admin/inquiries/${it.id}`, { cookie: a.cookie });
+  assert.ok(!(await call("GET", "/api/admin/inquiries", { cookie: a.cookie })).json.items.some((x) => x.id === it.id));
+});
+
 test("تسجيل مزود جديد: قيد المراجعة ثم يدخل بعد التوثيق", async () => {
   const reg = await call("POST", "/api/auth/register-provider", { body: { name: "قاعة الريف", owner: "خالد المنصور", phone: "0561234567", password: "Pass12345" } });
   assert.equal(reg.status, 200);

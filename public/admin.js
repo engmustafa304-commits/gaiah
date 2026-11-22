@@ -9,7 +9,7 @@
   var vname=function(id){var v=vById(id);return v?v.n:"—"};
   var pname=function(id){var p=pById(id);return p?p.name:"—"};
   var save=function(){if(!DBsave())toast("تعذّر الحفظ: مساحة التخزين ممتلئة")};
-  var TITLES={ov:"نظرة عامة",ap:"طلبات المراجعة",vn:"القاعات",pv:"المزودون",bk:"الحجوزات",us:"العرسان",rv:"التقييمات",gv:"السحوبات",lg:"سجل النشاط",st:"الإعدادات"};
+  var TITLES={ov:"نظرة عامة",ap:"طلبات المراجعة",vn:"القاعات",pv:"المزودون",bk:"الحجوزات",us:"العرسان",rv:"التقييمات",gv:"السحوبات",ms:"رسائل التواصل",lg:"سجل النشاط",st:"الإعدادات"};
   var go,bf="all",rf="all";
   var mask=function(ph){ph=String(ph||"");return ph.slice(0,2)+"*****"+ph.slice(-3)};
   var tm=function(t){return dateAr(t)+" · "+(t.indexOf("T")>-1?t.slice(11,16):"")};
@@ -249,6 +249,21 @@
     document.getElementById("rstDb").onclick=function(){UI.confirm("ستعود كل البيانات التجريبية إلى وضعها الأصلي.",DBreset,{title:"إعادة ضبط",yes:"إعادة ضبط",danger:true})};
   }
 
+  // ===== رسائل التواصل (جدول منفصل في الخادم) =====
+  var MSG=[];
+  function hdr(){return {"Content-Type":"application/json","X-Requested-With":"gaiah"}}
+  function loadMsgs(){fetch("/api/admin/inquiries",{headers:hdr()}).then(function(r){return r.json()}).then(function(j){MSG=j.items||[];renderMsgs()}).catch(function(){})}
+  function renderMsgs(){
+    var n=MSG.filter(function(m){return !m.done}).length,b=document.getElementById("nMs");b.textContent=n;b.style.display=n?"":"none";
+    document.getElementById("msl").innerHTML=MSG.length?MSG.map(function(m){return '<div class="rv-i"><div class="tp"><b>'+esc(m.name)+'</b><span dir="ltr" class="mut">'+esc(m.phone)+'</span><span class="mut" style="font-size:.8rem">'+esc(m.topic||"")+' · '+tm(m.created)+'</span>'+(m.done?'<span class="st-b s-ok">تمت المعالجة</span>':'<span class="st-b s-no">جديدة</span>')+'</div><p>'+esc(m.message)+'</p><div style="margin-top:8px"><button class="mini '+(m.done?"":"gold")+'" data-md="'+m.id+'" data-v="'+(m.done?0:1)+'">'+(m.done?"إعادة فتح":"تمت المعالجة")+'</button><button class="mini dng" data-mx="'+m.id+'">حذف</button></div></div>'}).join(""):'<div class="empty-s">لا توجد رسائل</div>';
+  }
+  document.addEventListener("click",function(e){
+    var x=e.target.closest("[data-md]"),y=e.target.closest("[data-mx]");
+    if(x){fetch("/api/admin/inquiries/"+x.dataset.md+"/done",{method:"POST",headers:hdr(),body:JSON.stringify({done:x.dataset.v==="1"})}).then(loadMsgs)}
+    if(y){UI.confirm("ستُحذف الرسالة نهائيًا.",function(){fetch("/api/admin/inquiries/"+y.dataset.mx,{method:"DELETE",headers:hdr()}).then(loadMsgs)},{title:"حذف رسالة",yes:"حذف",danger:true})}
+    if(e.target.closest('[data-t="ms"]'))loadMsgs();
+  });
+
   go=UI.nav(TITLES);
-  bind();refresh();
+  bind();refresh();loadMsgs();
 })();

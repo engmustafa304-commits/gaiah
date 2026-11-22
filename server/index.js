@@ -26,6 +26,7 @@ function createApp(opts = {}) {
   const db = new DatabaseSync(opts.memory ? ":memory:" : path.join(dataDir, "gaiah.db"));
   db.exec(`PRAGMA journal_mode=WAL;
     CREATE TABLE IF NOT EXISTS kv(key TEXT PRIMARY KEY, value TEXT NOT NULL, updated TEXT);
+    CREATE TABLE IF NOT EXISTS inquiries(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, phone TEXT, topic TEXT, message TEXT, done INTEGER DEFAULT 0, created TEXT);
     CREATE TABLE IF NOT EXISTS accounts(id INTEGER PRIMARY KEY AUTOINCREMENT, role TEXT NOT NULL, login TEXT NOT NULL UNIQUE, hash TEXT NOT NULL, ref TEXT, created TEXT);`);
 
   // سر الجلسات: من البيئة، وإلا يُولَّد ويُحفظ في مجلد البيانات
@@ -107,6 +108,24 @@ function createApp(opts = {}) {
     saveDb(d);
     res.json({ ok: true, id: nb.id });
   });
+
+  // ===== التواصل =====
+  const inqQ = {
+    add: db.prepare("INSERT INTO inquiries(name,phone,topic,message,created) VALUES(?,?,?,?,?)"),
+    list: db.prepare("SELECT * FROM inquiries ORDER BY done ASC, id DESC LIMIT 500"),
+    done: db.prepare("UPDATE inquiries SET done=? WHERE id=?"),
+    del: db.prepare("DELETE FROM inquiries WHERE id=?"),
+  };
+  app.post("/api/contact", small, (req, res) => {
+    if (!bookLimit(ip(req))) return res.status(429).json({ ok: false, error: "محاولات كثيرة، حاول لاحقًا" });
+    const b = req.body || {}, name = scope.str(b.name, 60).trim(), phone = scope.str(b.phone, 10), topic = scope.str(b.topic, 60), message = scope.str(b.message, 1000).trim();
+    if (name.length < 3 || !/^05\d{8}$/.test(phone) || message.length < 3) return res.status(400).json({ ok: false, error: "أدخل الاسم ورقم جوال صحيحًا يبدأ بـ 05 ورسالتك" });
+    inqQ.add.run(name, phone, topic, message, new Date().toISOString());
+    res.json({ ok: true });
+  });
+  app.get("/api/admin/inquiries", need("admin"), (req, res) => res.json({ ok: true, items: inqQ.list.all() }));
+  app.post("/api/admin/inquiries/:id/done", need("admin"), small, (req, res) => { inqQ.done.run(req.body && req.body.done ? 1 : 0, +req.params.id); res.json({ ok: true }); });
+  app.delete("/api/admin/inquiries/:id", need("admin"), (req, res) => { inqQ.del.run(+req.params.id); res.json({ ok: true }); });
 
   // ===== المصادقة =====
   app.post("/api/auth/login", small, (req, res) => {
