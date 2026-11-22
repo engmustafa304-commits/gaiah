@@ -125,6 +125,30 @@ test("الحجز العام: التحقق من المدخلات", async () => {
   assert.equal((await call("POST", "/api/bookings", { body: { ...base_, vid: 9999 } })).status, 404);
 });
 
+test("السحوبات: مشاركة عامة مرة واحدة لكل رقم، ولا تُسرَّب الأرقام", async () => {
+  const pub = (await call("GET", "/api/public-db")).json;
+  const g = pub.giveaways.find((x) => x.status === "open");
+  assert.ok(g);
+  assert.equal(g.entries, undefined);
+  const closed = pub.giveaways.find((x) => x.status === "closed");
+  assert.match(closed.winner, /^05\*{5}\d{3}$/);
+  const ph = "0507771122", url = `/api/giveaways/${g.id}/enter`;
+  assert.equal((await call("POST", url, { body: { phone: "123" } })).status, 400);
+  assert.equal((await call("POST", url, { body: { phone: ph }, noCsrf: true })).status, 403);
+  assert.equal((await call("POST", url, { body: { phone: ph } })).status, 200);
+  assert.equal((await call("POST", url, { body: { phone: ph } })).status, 409);
+  assert.equal((await call("POST", `/api/giveaways/${closed.id}/enter`, { body: { phone: ph } })).status, 409);
+  assert.equal((await call("POST", "/api/giveaways/NOPE/enter", { body: { phone: ph } })).status, 404);
+  const a = await loginAdmin();
+  const adm = (await call("GET", "/api/admin/db", { cookie: a.cookie })).json;
+  assert.ok(adm.giveaways.find((x) => x.id === g.id).entries.includes(ph));
+  // حفظ الإدارة بنسخة قديمة لا يمحو مشاركة وصلت بعد تحميلها
+  const stale = JSON.parse(JSON.stringify(adm));
+  stale.giveaways.find((x) => x.id === g.id).entries = stale.giveaways.find((x) => x.id === g.id).entries.filter((p) => p !== ph);
+  assert.equal((await call("PUT", "/api/admin/db", { cookie: a.cookie, body: { db: stale } })).status, 200);
+  assert.ok((await call("GET", "/api/admin/db", { cookie: a.cookie })).json.giveaways.find((x) => x.id === g.id).entries.includes(ph));
+});
+
 test("التواصل: رسالة عامة تصل للإدارة فقط وتُعالج وتُحذف", async () => {
   const m = { name: "سارة العتيبي", phone: "0509998877", topic: "أخرى", message: "أرغب بالاستفسار" };
   assert.equal((await call("POST", "/api/contact", { body: { ...m, phone: "123" } })).status, 400);

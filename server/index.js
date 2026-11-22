@@ -109,6 +109,21 @@ function createApp(opts = {}) {
     res.json({ ok: true, id: nb.id });
   });
 
+  // ===== السحوبات =====
+  app.post("/api/giveaways/:id/enter", small, (req, res) => {
+    if (!bookLimit(ip(req))) return res.status(429).json({ ok: false, error: "محاولات كثيرة، حاول لاحقًا" });
+    const phone = scope.str((req.body || {}).phone, 10), d = getDb(), g = (d.giveaways || []).find((x) => x.id === req.params.id);
+    if (!/^05\d{8}$/.test(phone)) return res.status(400).json({ ok: false, error: "أدخل رقم جوال سعودي صحيح يبدأ بـ 05" });
+    if (!g) return res.status(404).json({ ok: false, error: "السحب غير موجود" });
+    const t = scope.today();
+    if (g.status !== "open" || t < g.start || t > g.end) return res.status(409).json({ ok: false, error: "انتهت المشاركة في هذا السحب" });
+    g.entries = g.entries || [];
+    if (g.entries.includes(phone)) return res.status(409).json({ ok: false, error: "هذا الرقم مشارك مسبقًا في السحب" });
+    g.entries.push(phone);
+    saveDb(d);
+    res.json({ ok: true });
+  });
+
   // ===== التواصل =====
   const inqQ = {
     add: db.prepare("INSERT INTO inquiries(name,phone,topic,message,created) VALUES(?,?,?,?,?)"),
@@ -182,7 +197,11 @@ function createApp(opts = {}) {
   app.put("/api/admin/db", need("admin"), big, (req, res) => {
     const d = req.body && req.body.db;
     if (!scope.validAdminDb(d)) return res.status(400).json({ ok: false, error: "بيانات غير صالحة" });
-    delete d.me; saveDb(d);
+    delete d.me;
+    // لا نفقد مشاركات وصلت من الزوار أثناء فتح الإدارة للوحة: ندمج المشاركات الحالية
+    const cur = new Map((getDb().giveaways || []).map((g) => [g.id, g.entries || []]));
+    d.giveaways.forEach((g) => { const c = cur.get(g.id); if (c) g.entries = [...new Set([...(g.entries || []), ...c])]; });
+    saveDb(d);
     res.json({ ok: true });
   });
   app.post("/api/admin/reset", need("admin"), small, (req, res) => {

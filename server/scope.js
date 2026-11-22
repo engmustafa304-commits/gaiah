@@ -12,7 +12,9 @@ function publicDb(db) {
   const ids = new Set(db.venues.filter((v) => v.status === "approved").map((v) => v.id));
   return {
     v: db.v,
-    providers: [], users: [], giveaways: [], activity: [], withdrawals: [],
+    providers: [], users: [], activity: [], withdrawals: [],
+    // السحوبات: بلا أرقام المشاركين، والفائز مقنَّع
+    giveaways: (db.giveaways || []).map((g) => ({ id: g.id, title: g.title, prize: g.prize, start: g.start, end: g.end, winnerDate: g.winnerDate, status: g.status, count: (g.entries || []).length, winner: g.winner ? String(g.winner).slice(0, 2) + "*****" + String(g.winner).slice(-3) : "" })),
     venues: db.venues.filter((v) => ids.has(v.id)).map((v) => ({
       id: v.id, pid: v.pid, n: v.n, nameEn: v.nameEn, c: v.c, t: v.t, cap: v.cap, i: v.i, r: v.r, rv: v.rv, s: v.s,
       desc: v.desc, features: v.features, address: v.address, mapUrl: v.mapUrl, phone: v.phone, photos: v.photos, cover: v.cover,
